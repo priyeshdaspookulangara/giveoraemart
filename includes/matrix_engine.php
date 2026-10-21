@@ -78,7 +78,32 @@ function place_user_in_3_matrix($newUserId, $sponsorId = null) {
 }
 
 /**
+ * Checks if a user is qualified for Matrix Income (Needs at least 3 direct referrals).
+ *
+ * @param int $userId
+ * @return bool
+ */
+function is_matrix_qualified($userId) {
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE sponsor_id = ?");
+    $stmt->execute([$userId]);
+    $referralCount = (int)$stmt->fetchColumn();
+    return $referralCount >= 3;
+}
+
+/**
+ * Gets direct referral count for a user.
+ */
+function get_direct_referral_count($userId) {
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE sponsor_id = ?");
+    $stmt->execute([$userId]);
+    return (int)$stmt->fetchColumn();
+}
+
+/**
  * Distributes $50 per head across 11 levels up the 3-matrix tree.
+ * QUALIFICATION REQUIREMENT: User must have referred at least 3 direct members to earn matrix income.
  */
 function distribute_matrix_commissions($fromUserId, $orderId = null) {
     $pdo = get_db_connection();
@@ -97,9 +122,13 @@ function distribute_matrix_commissions($fromUserId, $orderId = null) {
         }
 
         $parentId = $row['matrix_parent_id'];
-        $matrixAmount = 50.00; // $50 per head in all 10 matrix levels
 
-        $insStmt->execute([$parentId, $fromUserId, $orderId, $matrixAmount, $level]);
+        // Qualification Check: Parent MUST have referred at least 3 direct members
+        if (is_matrix_qualified($parentId)) {
+            $matrixAmount = 50.00; // $50 per head in all 11 matrix levels
+            $insStmt->execute([$parentId, $fromUserId, $orderId, $matrixAmount, $level]);
+        }
+
         $currentChildId = $parentId;
     }
 }

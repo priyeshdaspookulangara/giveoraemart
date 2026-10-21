@@ -12,8 +12,10 @@ if (!$user) {
 $pageTitle = 'My Account & Earnings - Giveoraemart';
 $pdo = get_db_connection();
 
-// Fetch Earnings Breakdown
+// Fetch Earnings & Qualification Status
 $earnings = get_user_earnings($user['id']);
+$directReferralCount = get_direct_referral_count($user['id']);
+$isQualified = is_matrix_qualified($user['id']);
 
 // Fetch Detailed Commissions Ledger
 $commStmt = $pdo->prepare("
@@ -66,12 +68,16 @@ require_once __DIR__ . '/includes/header.php';
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
             <div class="flex items-center justify-between mb-2">
                 <span class="text-xs font-bold uppercase tracking-wider text-slate-400">3-Matrix Spillover Income ($50/head)</span>
-                <div class="w-8 h-8 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center border border-purple-500/20">
-                    <i class="fa-solid fa-diagram-project"></i>
-                </div>
+                <?php if ($isQualified): ?>
+                    <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full text-[10px] font-bold">QUALIFIED</span>
+                <?php else: ?>
+                    <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-full text-[10px] font-bold"><?= 3 - $directReferralCount ?> MORE REFS NEEDED</span>
+                <?php endif; ?>
             </div>
             <div class="text-3xl font-extrabold text-purple-400"><?= format_price($earnings['matrix_total']) ?></div>
-            <p class="text-[11px] text-slate-500 mt-1">Auto BFS 11-level matrix commissions</p>
+            <p class="text-[11px] text-slate-500 mt-1">
+                <?= $isQualified ? 'Auto BFS 11-level matrix active ($50/head)' : 'Refer at least 3 members to unlock matrix income' ?>
+            </p>
         </div>
 
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
