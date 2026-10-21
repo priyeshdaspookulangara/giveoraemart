@@ -1,6 +1,7 @@
 <?php
 // admin/commissions.php
 require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/auth_check.php';
 
 $pageTitle = 'Matrix & Referral Commissions';
 $activeTab = 'commissions';

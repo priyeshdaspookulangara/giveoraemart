@@ -1,6 +1,7 @@
 <?php
 // admin/categories.php
 require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/auth_check.php';
 
 $pageTitle = 'Category Management';
 $activeTab = 'categories';

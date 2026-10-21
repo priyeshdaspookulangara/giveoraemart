@@ -16,14 +16,27 @@ try {
 
     $pdo->exec("USE `giveoraemart_db`");
 
-    // Seed Admin, Root Matrix Node ("givoratraders") & Sample Customer User
+    // Seed Apex Root Node ("givoratraders"), 3 child "givoratraders" nodes, and "sheela", "byju", "givoratraders"
     $adminPassword = password_hash('admin123', PASSWORD_BCRYPT);
     $customerPassword = password_hash('customer123', PASSWORD_BCRYPT);
 
-    $stmt = $pdo->prepare("INSERT INTO users (id, name, email, password, role) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name)");
-    $stmt->execute([1, 'givoratraders', 'givoratraders@giveoraemart.com', $adminPassword, 'ADMIN']);
-    $stmt->execute([2, 'Giveorae Admin', 'admin@giveoraemart.com', $adminPassword, 'ADMIN']);
-    $stmt->execute([3, 'John Customer', 'john@example.com', $customerPassword, 'CUSTOMER']);
+    $stmt = $pdo->prepare("INSERT INTO users (id, name, email, password, role, sponsor_id, matrix_parent_id, matrix_position) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name), matrix_parent_id=VALUES(matrix_parent_id), matrix_position=VALUES(matrix_position)");
+
+    // Top Apex Root Node (#1)
+    $stmt->execute([1, 'givoratraders', 'givoratraders@giveoraemart.com', $adminPassword, 'ADMIN', null, null, null]);
+
+    // Level 1 Nodes (3 x givoratraders under ID 1)
+    $stmt->execute([2, 'givoratraders', 'givoratraders2@giveoraemart.com', $adminPassword, 'ADMIN', 1, 1, 1]);
+    $stmt->execute([3, 'givoratraders', 'givoratraders3@giveoraemart.com', $adminPassword, 'ADMIN', 1, 1, 2]);
+    $stmt->execute([4, 'givoratraders', 'givoratraders4@giveoraemart.com', $adminPassword, 'ADMIN', 1, 1, 3]);
+
+    // Level 2 Nodes (sheela, byju, givoratraders under ID 2)
+    $stmt->execute([5, 'sheela', 'sheela@example.com', $customerPassword, 'CUSTOMER', 2, 2, 1]);
+    $stmt->execute([6, 'byju', 'byju@example.com', $customerPassword, 'CUSTOMER', 2, 2, 2]);
+    $stmt->execute([7, 'givoratraders', 'givoratraders5@giveoraemart.com', $adminPassword, 'ADMIN', 2, 2, 3]);
+
+    // Sample Admin Account (#8)
+    $stmt->execute([8, 'Giveorae Admin', 'admin@giveoraemart.com', $adminPassword, 'ADMIN', null, null, null]);
 
     // Seed Categories
     $categories = [

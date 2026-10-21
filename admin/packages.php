@@ -1,6 +1,7 @@
 <?php
 // admin/packages.php
 require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/auth_check.php';
 
 $pageTitle = 'Package & Bundle Management';
 $activeTab = 'packages';
