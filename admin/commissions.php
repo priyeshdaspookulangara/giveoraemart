@@ -47,6 +47,29 @@ require_once __DIR__ . '/../includes/admin_header.php';
     </div>
 </div>
 
+<!-- Global 3-Matrix Tree Visualization -->
+<div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 mb-8 overflow-x-auto">
+    <div class="flex items-center justify-between border-b border-slate-700/80 pb-4 mb-6">
+        <div>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-sitemap text-purple-400"></i> Global 3-Matrix Downline Tree (Apex: givoratraders)
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">Real-time BFS auto-spillover matrix tree structure from top root</p>
+        </div>
+        <span class="text-xs bg-amber-500/10 text-amber-300 border border-amber-500/20 font-bold px-3 py-1 rounded-full">
+            Apex Root: givoratraders (#1)
+        </span>
+    </div>
+
+    <div class="min-w-[800px] flex justify-center py-4">
+        <?php
+        require_once __DIR__ . '/../includes/matrix_engine.php';
+        $globalMatrixTree = get_matrix_tree_data(1, 3);
+        echo render_matrix_tree_html($globalMatrixTree, 1, 3);
+        ?>
+    </div>
+</div>
+
 <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6">
     <h2 class="text-lg font-bold text-white mb-4">Commission Distribution Log</h2>
 

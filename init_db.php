@@ -16,13 +16,14 @@ try {
 
     $pdo->exec("USE `giveoraemart_db`");
 
-    // Seed Admin & Sample Customer User
+    // Seed Admin, Root Matrix Node ("givoratraders") & Sample Customer User
     $adminPassword = password_hash('admin123', PASSWORD_BCRYPT);
     $customerPassword = password_hash('customer123', PASSWORD_BCRYPT);
 
-    $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name)");
-    $stmt->execute(['Giveorae Admin', 'admin@giveoraemart.com', $adminPassword, 'ADMIN']);
-    $stmt->execute(['John Customer', 'john@example.com', $customerPassword, 'CUSTOMER']);
+    $stmt = $pdo->prepare("INSERT INTO users (id, name, email, password, role) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name)");
+    $stmt->execute([1, 'givoratraders', 'givoratraders@giveoraemart.com', $adminPassword, 'ADMIN']);
+    $stmt->execute([2, 'Giveorae Admin', 'admin@giveoraemart.com', $adminPassword, 'ADMIN']);
+    $stmt->execute([3, 'John Customer', 'john@example.com', $customerPassword, 'CUSTOMER']);
 
     // Seed Categories
     $categories = [

@@ -5,7 +5,7 @@ require_once __DIR__ . '/functions.php';
 
 /**
  * Places a newly registered user into the 3-matrix tree using Breadth-First Search (BFS) auto-spillover.
- * Max 3 children per node.
+ * Max 3 children per node. Top apex root is "givoratraders" (ID: 1).
  *
  * @param int $newUserId
  * @param int|null $sponsorId
@@ -21,18 +21,14 @@ function place_user_in_3_matrix($newUserId, $sponsorId = null) {
         return; // Already placed
     }
 
-    // Determine starting root for BFS
-    $startRootId = null;
+    // Apex root ID defaults to 1 ("givoratraders")
+    $startRootId = 1;
     if ($sponsorId) {
         $startRootId = $sponsorId;
-    } else {
-        // Fallback to top admin user or first created user
-        $topUser = $pdo->query("SELECT id FROM users ORDER BY id ASC LIMIT 1")->fetch();
-        $startRootId = $topUser ? $topUser['id'] : null;
     }
 
-    if (!$startRootId || $startRootId == $newUserId) {
-        return;
+    if ($startRootId == $newUserId) {
+        $startRootId = 1;
     }
 
     // Queue for Breadth-First Search (BFS)
@@ -79,9 +75,6 @@ function place_user_in_3_matrix($newUserId, $sponsorId = null) {
 
 /**
  * Checks if a user is qualified for Matrix Income (Needs at least 3 direct referrals).
- *
- * @param int $userId
- * @return bool
  */
 function is_matrix_qualified($userId) {
     $pdo = get_db_connection();
@@ -135,13 +128,7 @@ function distribute_matrix_commissions($fromUserId, $orderId = null) {
 
 /**
  * Distributes level referral income across 7 sponsor levels:
- * Level 1: $500
- * Level 2: $250
- * Level 3: $200
- * Level 4: $150
- * Level 5: $100
- * Level 6: $50
- * Level 7: $50
+ * Level 1: $500, Level 2: $250, Level 3: $200, Level 4: $150, Level 5: $100, Level 6: $50, Level 7: $50
  */
 function distribute_level_commissions($fromUserId, $orderId = null) {
     $pdo = get_db_connection();
@@ -199,4 +186,100 @@ function get_user_earnings($userId) {
         'level_total' => (float)($totals['level_total'] ?? 0.00),
         'grand_total' => (float)($totals['grand_total'] ?? 0.00)
     ];
+}
+
+/**
+ * Recursively builds array tree structure for 3-Matrix downline visualization.
+ *
+ * @param int $rootUserId
+ * @param int $depth Current depth limit for rendering
+ * @return array
+ */
+function get_matrix_tree_data($rootUserId, $maxDepth = 3, $currentDepth = 1) {
+    $pdo = get_db_connection();
+
+    $stmt = $pdo->prepare("SELECT id, name, email, matrix_parent_id, matrix_position, created_at FROM users WHERE id = ?");
+    $stmt->execute([$rootUserId]);
+    $node = $stmt->fetch();
+
+    if (!$node) {
+        return null;
+    }
+
+    $node['is_qualified'] = is_matrix_qualified($node['id']);
+    $node['direct_ref_count'] = get_direct_referral_count($node['id']);
+    $node['children'] = [];
+
+    if ($currentDepth <= $maxDepth) {
+        $cStmt = $pdo->prepare("SELECT id, matrix_position FROM users WHERE matrix_parent_id = ? ORDER BY matrix_position ASC");
+        $cStmt->execute([$rootUserId]);
+        $children = $cStmt->fetchAll();
+
+        // Organize children by positions 1, 2, 3
+        $childrenByPos = [];
+        foreach ($children as $child) {
+            $childrenByPos[$child['matrix_position']] = $child['id'];
+        }
+
+        for ($pos = 1; $pos <= 3; $pos++) {
+            if (isset($childrenByPos[$pos])) {
+                $node['children'][$pos] = get_matrix_tree_data($childrenByPos[$pos], $maxDepth, $currentDepth + 1);
+            } else {
+                $node['children'][$pos] = null; // Empty slot
+            }
+        }
+    }
+
+    return $node;
+}
+
+/**
+ * HTML Helper to render a visual 3-matrix tree node component.
+ */
+function render_matrix_tree_html($treeNode, $depth = 1, $maxDepth = 3) {
+    if (!$treeNode) return '';
+
+    $isRoot = ($treeNode['id'] == 1);
+    $badgeColor = $isRoot ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' : ($treeNode['is_qualified'] ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-rose-500/20 text-rose-300 border-rose-500/30');
+
+    $html = '<div class="flex flex-col items-center my-2 text-center relative">';
+
+    // Node Card
+    $html .= '<div class="bg-slate-900 border border-slate-700/80 rounded-2xl p-3 shadow-xl w-48 transition hover:border-emerald-500/50 z-10 hover:scale-105">';
+    $html .= '  <div class="flex items-center justify-between mb-1.5">';
+    $html .= '    <span class="text-[10px] font-mono text-slate-500">#' . $treeNode['id'] . '</span>';
+    $html .= '    <span class="px-2 py-0.5 rounded-full text-[9px] font-bold border ' . $badgeColor . '">' . ($isRoot ? 'TOP APEX' : ($treeNode['is_qualified'] ? 'QUALIFIED' : 'UNQUALIFIED')) . '</span>';
+    $html .= '  </div>';
+    $html .= '  <h4 class="font-bold text-white text-xs truncate">' . htmlspecialchars($treeNode['name']) . '</h4>';
+    $html .= '  <p class="text-[10px] text-slate-400 truncate mt-0.5">' . htmlspecialchars($treeNode['email']) . '</p>';
+    $html .= '  <div class="mt-2 pt-1.5 border-t border-slate-800 text-[10px] text-slate-400 flex justify-between">';
+    $html .= '    <span>Direct Refs: <b class="text-emerald-400">' . $treeNode['direct_ref_count'] . '</b></span>';
+    $html .= '  </div>';
+    $html .= '</div>';
+
+    // Children Container
+    if (!empty($treeNode['children']) && $depth < $maxDepth) {
+        $html .= '<div class="w-px h-6 bg-slate-700 my-1"></div>';
+        $html .= '<div class="flex items-start justify-center gap-4 relative pt-2 border-t border-slate-700/80 w-full overflow-x-auto">';
+
+        foreach ([1, 2, 3] as $pos) {
+            $childNode = $treeNode['children'][$pos] ?? null;
+            if ($childNode) {
+                $html .= render_matrix_tree_html($childNode, $depth + 1, $maxDepth);
+            } else {
+                // Render Empty Slot Box
+                $html .= '<div class="flex flex-col items-center my-2 text-center">';
+                $html .= '  <div class="bg-slate-950/60 border border-dashed border-slate-800 rounded-2xl p-3 w-36 text-center">';
+                $html .= '    <span class="text-[9px] font-bold uppercase text-slate-600 block mb-1">Position ' . $pos . '</span>';
+                $html .= '    <div class="w-6 h-6 rounded-full bg-slate-900 text-slate-700 flex items-center justify-center mx-auto text-xs"><i class="fa-solid fa-plus"></i></div>';
+                $html .= '    <span class="text-[10px] text-slate-600 block mt-1">Available Slot</span>';
+                $html .= '  </div>';
+                $html .= '</div>';
+            }
+        }
+        $html .= '</div>';
+    }
+
+    $html .= '</div>';
+    return $html;
 }

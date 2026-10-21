@@ -103,63 +103,48 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-        <!-- 3-Matrix Team Hierarchy -->
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
-            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-sitemap text-purple-400"></i> My 3-Matrix Direct Nodes
-            </h2>
-            <div class="grid grid-cols-3 gap-3">
-                <?php for ($pos = 1; $pos <= 3; $pos++): ?>
-                    <?php
-                    $childAtPos = null;
-                    foreach ($matrixChildren as $mc) {
-                        if ($mc['matrix_position'] == $pos) {
-                            $childAtPos = $mc;
-                            break;
-                        }
-                    }
-                    ?>
-                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 text-center">
-                        <span class="text-[10px] font-bold uppercase text-slate-500 block mb-2">Position <?= $pos ?></span>
-                        <?php if ($childAtPos): ?>
-                            <div class="w-10 h-10 rounded-full bg-purple-500/20 text-purple-300 font-bold flex items-center justify-center mx-auto mb-2 text-xs border border-purple-500/30">
-                                <?= strtoupper(substr($childAtPos['name'], 0, 1)) ?>
-                            </div>
-                            <span class="text-xs font-bold text-white block truncate"><?= htmlspecialchars($childAtPos['name']) ?></span>
-                            <span class="text-[10px] text-slate-500 font-mono block">ID: #<?= $childAtPos['id'] ?></span>
-                        <?php else: ?>
-                            <div class="w-10 h-10 rounded-full bg-slate-900 text-slate-600 font-bold flex items-center justify-center mx-auto mb-2 text-xs border border-slate-800">
-                                <i class="fa-solid fa-user-plus"></i>
-                            </div>
-                            <span class="text-xs text-slate-600 font-medium block">Empty Slot</span>
-                        <?php endif; ?>
-                    </div>
-                <?php endfor; ?>
+    <!-- Visual 3-Matrix Interactive Tree -->
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 mb-10 overflow-x-auto">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+            <div>
+                <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-sitemap text-purple-400"></i> My 3-Matrix Visual Downline Tree
+                </h2>
+                <p class="text-xs text-slate-400 mt-0.5">Explore auto-spillover placement downline structure (BFS Level Placement)</p>
             </div>
+            <span class="text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold px-3 py-1 rounded-full">
+                Root: <?= htmlspecialchars($user['name']) ?>
+            </span>
         </div>
 
-        <!-- Direct Referrals List -->
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
-            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-user-group text-blue-400"></i> Direct Referrals (<?= count($directReferrals) ?>)
-            </h2>
-            <?php if (empty($directReferrals)): ?>
-                <div class="text-center py-8 text-slate-500 text-xs">No direct referrals yet. Share your referral link!</div>
-            <?php else: ?>
-                <div class="space-y-2 max-h-48 overflow-y-auto">
-                    <?php foreach ($directReferrals as $ref): ?>
-                        <div class="flex items-center justify-between bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs">
-                            <div>
-                                <span class="font-bold text-white block"><?= htmlspecialchars($ref['name']) ?></span>
-                                <span class="text-slate-500"><?= htmlspecialchars($ref['email']) ?></span>
-                            </div>
-                            <span class="font-mono text-slate-400">ID: #<?= $ref['id'] ?></span>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
+        <div class="min-w-[700px] flex justify-center py-4">
+            <?php
+            $userMatrixTree = get_matrix_tree_data($user['id'], 3);
+            echo render_matrix_tree_html($userMatrixTree, 1, 3);
+            ?>
         </div>
+    </div>
+
+    <!-- Direct Referrals List -->
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 mb-10">
+        <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-user-group text-blue-400"></i> Direct Referrals (<?= count($directReferrals) ?>)
+        </h2>
+        <?php if (empty($directReferrals)): ?>
+            <div class="text-center py-8 text-slate-500 text-xs">No direct referrals yet. Share your referral link!</div>
+        <?php else: ?>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                <?php foreach ($directReferrals as $ref): ?>
+                    <div class="flex items-center justify-between bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs">
+                        <div>
+                            <span class="font-bold text-white block truncate"><?= htmlspecialchars($ref['name']) ?></span>
+                            <span class="text-slate-500 text-[10px] truncate block"><?= htmlspecialchars($ref['email']) ?></span>
+                        </div>
+                        <span class="font-mono text-slate-400 text-[10px] bg-slate-900 px-2 py-1 rounded">ID: #<?= $ref['id'] ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
 
     <!-- Recent Commissions Ledger -->
