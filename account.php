@@ -71,7 +71,7 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
             </div>
             <div class="text-3xl font-extrabold text-purple-400"><?= format_price($earnings['matrix_total']) ?></div>
-            <p class="text-[11px] text-slate-500 mt-1">Auto BFS 10-level matrix commissions</p>
+            <p class="text-[11px] text-slate-500 mt-1">Auto BFS 11-level matrix commissions</p>
         </div>
 
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">

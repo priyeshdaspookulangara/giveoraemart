@@ -78,7 +78,7 @@ function place_user_in_3_matrix($newUserId, $sponsorId = null) {
 }
 
 /**
- * Distributes $50 per head across 10 levels up the 3-matrix tree.
+ * Distributes $50 per head across 11 levels up the 3-matrix tree.
  */
 function distribute_matrix_commissions($fromUserId, $orderId = null) {
     $pdo = get_db_connection();
@@ -88,7 +88,7 @@ function distribute_matrix_commissions($fromUserId, $orderId = null) {
 
     $currentChildId = $fromUserId;
 
-    for ($level = 1; $level <= 10; $level++) {
+    for ($level = 1; $level <= 11; $level++) {
         $currUserStmt->execute([$currentChildId]);
         $row = $currUserStmt->fetch();
 
