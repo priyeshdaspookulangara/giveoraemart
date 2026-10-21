@@ -1,12 +1,16 @@
 <?php
 // register.php
 require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/includes/matrix_engine.php';
 
 $error = '';
+$sponsorId = isset($_GET['ref']) ? (int)$_GET['ref'] : null;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = sanitize($_POST['name'] ?? '');
     $email = sanitize($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
+    $sponsorId = !empty($_POST['sponsor_id']) ? (int)$_POST['sponsor_id'] : $sponsorId;
 
     if (!empty($name) && !empty($email) && !empty($password)) {
         $pdo = get_db_connection();
@@ -17,10 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Email address is already registered.';
         } else {
             $hashedPass = password_hash($password, PASSWORD_BCRYPT);
-            $insStmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'CUSTOMER')");
-            $insStmt->execute([$name, $email, $hashedPass]);
+            $insStmt = $pdo->prepare("INSERT INTO users (name, email, password, role, sponsor_id) VALUES (?, ?, ?, 'CUSTOMER', ?)");
+            $insStmt->execute([$name, $email, $hashedPass, $sponsorId ?: null]);
 
             $newId = $pdo->lastInsertId();
+
+            // 1. Place in 3-Matrix using BFS Auto-Spillover
+            place_user_in_3_matrix($newId, $sponsorId);
+
+            // 2. Distribute Instant Registration Level & Matrix Incentives
+            distribute_level_commissions($newId);
+            distribute_matrix_commissions($newId);
+
             $_SESSION['user'] = [
                 'id' => $newId,
                 'name' => $name,
@@ -63,6 +75,12 @@ require_once __DIR__ . '/includes/header.php';
         <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email Address *</label>
             <input type="email" name="email" required placeholder="john@example.com"
+                   class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Sponsor / Referrer ID (Optional)</label>
+            <input type="number" name="sponsor_id" value="<?= htmlspecialchars($sponsorId ?? '') ?>" placeholder="e.g. 2"
                    class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-emerald-500">
         </div>
 

@@ -77,3 +77,135 @@
 [Wed Oct 21 09:46:36 2026] 127.0.0.1:40572 Accepted
 [Wed Oct 21 09:46:36 2026] 127.0.0.1:40572 [200]: GET /api/wishlist.php?action=count
 [Wed Oct 21 09:46:36 2026] 127.0.0.1:40572 Closing
+[Wed Oct 21 11:22:18 2026] 127.0.0.1:55378 Accepted
+[Wed Oct 21 11:22:18 2026] 127.0.0.1:55378 [200]: GET /
+[Wed Oct 21 11:22:18 2026] 127.0.0.1:55378 Closing
+[Wed Oct 21 11:22:18 2026] 127.0.0.1:52366 Accepted
+[Wed Oct 21 11:22:18 2026] 127.0.0.1:52366 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:22:18 2026] 127.0.0.1:52366 Closing
+[Wed Oct 21 11:22:19 2026] 127.0.0.1:52372 Accepted
+[Wed Oct 21 11:22:19 2026] 127.0.0.1:52372 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:22:19 2026] 127.0.0.1:52372 Closing
+[Wed Oct 21 11:22:20 2026] 127.0.0.1:52378 Accepted
+[Wed Oct 21 11:22:20 2026] 127.0.0.1:52378 [200]: GET /shop.php?purchase_type=REPURCHASE
+[Wed Oct 21 11:22:20 2026] 127.0.0.1:52378 Closing
+[Wed Oct 21 11:22:20 2026] 127.0.0.1:52392 Accepted
+[Wed Oct 21 11:22:20 2026] 127.0.0.1:52392 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:22:20 2026] 127.0.0.1:52392 Closing
+[Wed Oct 21 11:22:20 2026] 127.0.0.1:52400 Accepted
+[Wed Oct 21 11:22:20 2026] 127.0.0.1:52400 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:22:20 2026] 127.0.0.1:52400 Closing
+[Wed Oct 21 11:22:21 2026] 127.0.0.1:52406 Accepted
+[Wed Oct 21 11:22:21 2026] 127.0.0.1:52406 [200]: GET /product.php?id=1
+[Wed Oct 21 11:22:21 2026] 127.0.0.1:52406 Closing
+[Wed Oct 21 11:22:21 2026] 127.0.0.1:52408 Accepted
+[Wed Oct 21 11:22:21 2026] 127.0.0.1:52408 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:22:21 2026] 127.0.0.1:52408 Closing
+[Wed Oct 21 11:22:21 2026] 127.0.0.1:52418 Accepted
+[Wed Oct 21 11:22:21 2026] 127.0.0.1:52418 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:22:21 2026] 127.0.0.1:52418 Closing
+[Wed Oct 21 11:22:22 2026] 127.0.0.1:52426 Accepted
+[Wed Oct 21 11:22:22 2026] 127.0.0.1:52426 [200]: POST /api/cart.php
+[Wed Oct 21 11:22:22 2026] 127.0.0.1:52426 Closing
+[Wed Oct 21 11:22:23 2026] 127.0.0.1:52440 Accepted
+[Wed Oct 21 11:22:23 2026] 127.0.0.1:52440 [200]: GET /cart.php
+[Wed Oct 21 11:22:23 2026] 127.0.0.1:52440 Closing
+[Wed Oct 21 11:22:23 2026] 127.0.0.1:52452 Accepted
+[Wed Oct 21 11:22:23 2026] 127.0.0.1:52452 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:22:23 2026] 127.0.0.1:52452 Closing
+[Wed Oct 21 11:22:24 2026] 127.0.0.1:52464 Accepted
+[Wed Oct 21 11:22:24 2026] 127.0.0.1:52464 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:22:24 2026] 127.0.0.1:52464 Closing
+[Wed Oct 21 11:22:25 2026] 127.0.0.1:52466 Accepted
+[Wed Oct 21 11:22:25 2026] 127.0.0.1:52466 [200]: GET /checkout.php
+[Wed Oct 21 11:22:25 2026] 127.0.0.1:52466 Closing
+[Wed Oct 21 11:22:25 2026] 127.0.0.1:52470 Accepted
+[Wed Oct 21 11:22:25 2026] 127.0.0.1:52470 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:22:25 2026] 127.0.0.1:52470 Closing
+[Wed Oct 21 11:22:25 2026] 127.0.0.1:52474 Accepted
+[Wed Oct 21 11:22:25 2026] 127.0.0.1:52474 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:22:25 2026] 127.0.0.1:52474 Closing
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52490 Accepted
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52490 [302]: POST /api/checkout.php
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52490 Closing
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52504 Accepted
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52504 [200]: GET /order-success.php?id=1
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52504 Closing
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52512 Accepted
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52512 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52512 Closing
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52514 Accepted
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52514 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:22:27 2026] 127.0.0.1:52514 Closing
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40298 Accepted
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40298 [302]: POST /register.php
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40298 Closing
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40310 Accepted
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40310 [302]: POST /register.php
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40310 Closing
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40324 Accepted
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40324 [302]: POST /register.php
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40324 Closing
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40334 Accepted
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40334 [302]: POST /register.php
+[Wed Oct 21 11:22:57 2026] 127.0.0.1:40334 Closing
+[Wed Oct 21 11:23:23 2026] 127.0.0.1:38818 Accepted
+[Wed Oct 21 11:23:23 2026] 127.0.0.1:38818 [200]: GET /
+[Wed Oct 21 11:23:23 2026] 127.0.0.1:38818 Closing
+[Wed Oct 21 11:23:23 2026] 127.0.0.1:38826 Accepted
+[Wed Oct 21 11:23:23 2026] 127.0.0.1:38826 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:23:23 2026] 127.0.0.1:38826 Closing
+[Wed Oct 21 11:23:24 2026] 127.0.0.1:38828 Accepted
+[Wed Oct 21 11:23:24 2026] 127.0.0.1:38828 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:23:24 2026] 127.0.0.1:38828 Closing
+[Wed Oct 21 11:23:25 2026] 127.0.0.1:38838 Accepted
+[Wed Oct 21 11:23:25 2026] 127.0.0.1:38838 [200]: GET /shop.php?purchase_type=REPURCHASE
+[Wed Oct 21 11:23:25 2026] 127.0.0.1:38838 Closing
+[Wed Oct 21 11:23:25 2026] 127.0.0.1:38842 Accepted
+[Wed Oct 21 11:23:25 2026] 127.0.0.1:38842 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:23:25 2026] 127.0.0.1:38842 Closing
+[Wed Oct 21 11:23:25 2026] 127.0.0.1:38852 Accepted
+[Wed Oct 21 11:23:25 2026] 127.0.0.1:38852 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:23:25 2026] 127.0.0.1:38852 Closing
+[Wed Oct 21 11:23:26 2026] 127.0.0.1:38862 Accepted
+[Wed Oct 21 11:23:26 2026] 127.0.0.1:38862 [200]: GET /product.php?id=1
+[Wed Oct 21 11:23:26 2026] 127.0.0.1:38862 Closing
+[Wed Oct 21 11:23:26 2026] 127.0.0.1:38868 Accepted
+[Wed Oct 21 11:23:26 2026] 127.0.0.1:38868 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:23:26 2026] 127.0.0.1:38868 Closing
+[Wed Oct 21 11:23:26 2026] 127.0.0.1:38880 Accepted
+[Wed Oct 21 11:23:26 2026] 127.0.0.1:38880 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:23:26 2026] 127.0.0.1:38880 Closing
+[Wed Oct 21 11:23:27 2026] 127.0.0.1:38884 Accepted
+[Wed Oct 21 11:23:27 2026] 127.0.0.1:38884 [200]: POST /api/cart.php
+[Wed Oct 21 11:23:27 2026] 127.0.0.1:38884 Closing
+[Wed Oct 21 11:23:28 2026] 127.0.0.1:39570 Accepted
+[Wed Oct 21 11:23:28 2026] 127.0.0.1:39570 [200]: GET /cart.php
+[Wed Oct 21 11:23:28 2026] 127.0.0.1:39570 Closing
+[Wed Oct 21 11:23:28 2026] 127.0.0.1:39584 Accepted
+[Wed Oct 21 11:23:28 2026] 127.0.0.1:39584 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:23:28 2026] 127.0.0.1:39584 Closing
+[Wed Oct 21 11:23:28 2026] 127.0.0.1:39600 Accepted
+[Wed Oct 21 11:23:28 2026] 127.0.0.1:39600 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:23:28 2026] 127.0.0.1:39600 Closing
+[Wed Oct 21 11:23:29 2026] 127.0.0.1:39612 Accepted
+[Wed Oct 21 11:23:29 2026] 127.0.0.1:39612 [200]: GET /checkout.php
+[Wed Oct 21 11:23:29 2026] 127.0.0.1:39612 Closing
+[Wed Oct 21 11:23:29 2026] 127.0.0.1:39622 Accepted
+[Wed Oct 21 11:23:29 2026] 127.0.0.1:39622 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:23:29 2026] 127.0.0.1:39622 Closing
+[Wed Oct 21 11:23:30 2026] 127.0.0.1:39634 Accepted
+[Wed Oct 21 11:23:30 2026] 127.0.0.1:39634 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:23:30 2026] 127.0.0.1:39634 Closing
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39642 Accepted
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39642 [302]: POST /api/checkout.php
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39642 Closing
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39650 Accepted
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39650 [200]: GET /order-success.php?id=2
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39650 Closing
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39656 Accepted
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39656 [200]: GET /assets/js/app.js
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39656 Closing
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39658 Accepted
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39658 [200]: GET /api/wishlist.php?action=count
+[Wed Oct 21 11:23:32 2026] 127.0.0.1:39658 Closing

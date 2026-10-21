@@ -1,6 +1,7 @@
 <?php
 // api/checkout.php
 require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../includes/matrix_engine.php';
 
 $cartDetails = get_cart_details();
 
@@ -65,6 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Clear session cart
         $_SESSION['cart'] = [];
+
+        // If registered user, trigger matrix & level referral payouts for order
+        if ($userId) {
+            distribute_level_commissions($userId, $orderId);
+            distribute_matrix_commissions($userId, $orderId);
+        }
 
         header("Location: /order-success.php?id=" . $orderId);
         exit;
