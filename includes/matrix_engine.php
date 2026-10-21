@@ -6,9 +6,6 @@ require_once __DIR__ . '/functions.php';
 /**
  * Places a newly registered user into the 3-matrix tree using Breadth-First Search (BFS) auto-spillover.
  * Max 3 children per node. Top apex root is "givoratraders" (ID: 1).
- *
- * @param int $newUserId
- * @param int|null $sponsorId
  */
 function place_user_in_3_matrix($newUserId, $sponsorId = null) {
     $pdo = get_db_connection();
@@ -190,10 +187,6 @@ function get_user_earnings($userId) {
 
 /**
  * Recursively builds array tree structure for 3-Matrix downline visualization.
- *
- * @param int $rootUserId
- * @param int $depth Current depth limit for rendering
- * @return array
  */
 function get_matrix_tree_data($rootUserId, $maxDepth = 3, $currentDepth = 1) {
     $pdo = get_db_connection();
@@ -234,7 +227,7 @@ function get_matrix_tree_data($rootUserId, $maxDepth = 3, $currentDepth = 1) {
 }
 
 /**
- * HTML Helper to render a visual 3-matrix tree node component.
+ * HTML Helper to render a compact, perfectly structured ternary tree (3-Matrix Pyramid).
  */
 function render_matrix_tree_html($treeNode, $depth = 1, $maxDepth = 3) {
     if (!$treeNode) return '';
@@ -242,41 +235,55 @@ function render_matrix_tree_html($treeNode, $depth = 1, $maxDepth = 3) {
     $isRoot = ($treeNode['id'] == 1);
     $badgeColor = $isRoot ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' : ($treeNode['is_qualified'] ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-rose-500/20 text-rose-300 border-rose-500/30');
 
-    $html = '<div class="flex flex-col items-center my-2 text-center relative">';
+    // Scale card dimensions dynamically based on depth
+    $cardWidth = $depth === 1 ? 'w-44' : ($depth === 2 ? 'w-36' : 'w-32');
 
-    // Node Card
-    $html .= '<div class="bg-slate-900 border border-slate-700/80 rounded-2xl p-3 shadow-xl w-48 transition hover:border-emerald-500/50 z-10 hover:scale-105">';
-    $html .= '  <div class="flex items-center justify-between mb-1.5">';
-    $html .= '    <span class="text-[10px] font-mono text-slate-500">#' . $treeNode['id'] . '</span>';
-    $html .= '    <span class="px-2 py-0.5 rounded-full text-[9px] font-bold border ' . $badgeColor . '">' . ($isRoot ? 'TOP APEX' : ($treeNode['is_qualified'] ? 'QUALIFIED' : 'UNQUALIFIED')) . '</span>';
+    $html = '<div class="flex flex-col items-center text-center relative px-1">';
+
+    // Parent Node Card
+    $html .= '<div class="bg-slate-900 border border-slate-700/80 rounded-xl p-2.5 shadow-xl ' . $cardWidth . ' transition hover:border-emerald-500/60 z-10 relative hover:scale-105">';
+    $html .= '  <div class="flex items-center justify-between mb-1">';
+    $html .= '    <span class="text-[9px] font-mono text-slate-500">#' . $treeNode['id'] . '</span>';
+    $html .= '    <span class="px-1.5 py-0.2 rounded-full text-[8px] font-extrabold border ' . $badgeColor . '">' . ($isRoot ? 'APEX' : ($treeNode['is_qualified'] ? 'QUALIFIED' : 'UNQUALIFIED')) . '</span>';
     $html .= '  </div>';
     $html .= '  <h4 class="font-bold text-white text-xs truncate">' . htmlspecialchars($treeNode['name']) . '</h4>';
-    $html .= '  <p class="text-[10px] text-slate-400 truncate mt-0.5">' . htmlspecialchars($treeNode['email']) . '</p>';
-    $html .= '  <div class="mt-2 pt-1.5 border-t border-slate-800 text-[10px] text-slate-400 flex justify-between">';
-    $html .= '    <span>Direct Refs: <b class="text-emerald-400">' . $treeNode['direct_ref_count'] . '</b></span>';
+    $html .= '  <p class="text-[9px] text-slate-400 truncate mt-0.5">' . htmlspecialchars($treeNode['email']) . '</p>';
+    $html .= '  <div class="mt-1.5 pt-1 border-t border-slate-800 text-[9px] text-slate-400 flex justify-between">';
+    $html .= '    <span>Refs: <b class="text-emerald-400">' . $treeNode['direct_ref_count'] . '</b></span>';
     $html .= '  </div>';
     $html .= '</div>';
 
-    // Children Container
+    // Children Container (3 Positions)
     if (!empty($treeNode['children']) && $depth < $maxDepth) {
-        $html .= '<div class="w-px h-6 bg-slate-700 my-1"></div>';
-        $html .= '<div class="flex items-start justify-center gap-4 relative pt-2 border-t border-slate-700/80 w-full overflow-x-auto">';
+        // Vertical stem coming down from parent
+        $html .= '<div class="w-px h-4 bg-slate-600"></div>';
+
+        // Ternary container with connecting horizontal line
+        $html .= '<div class="relative flex justify-center items-start gap-2 pt-2">';
+
+        // Horizontal Connector Line spanning 3 positions
+        $html .= '<div class="absolute top-0 left-6 right-6 h-px bg-slate-600"></div>';
 
         foreach ([1, 2, 3] as $pos) {
             $childNode = $treeNode['children'][$pos] ?? null;
+
+            $html .= '<div class="flex flex-col items-center relative">';
+            // Vertical stem to child
+            $html .= '  <div class="w-px h-2 bg-slate-600 -mt-2 mb-1"></div>';
+
             if ($childNode) {
                 $html .= render_matrix_tree_html($childNode, $depth + 1, $maxDepth);
             } else {
-                // Render Empty Slot Box
-                $html .= '<div class="flex flex-col items-center my-2 text-center">';
-                $html .= '  <div class="bg-slate-950/60 border border-dashed border-slate-800 rounded-2xl p-3 w-36 text-center">';
-                $html .= '    <span class="text-[9px] font-bold uppercase text-slate-600 block mb-1">Position ' . $pos . '</span>';
-                $html .= '    <div class="w-6 h-6 rounded-full bg-slate-900 text-slate-700 flex items-center justify-center mx-auto text-xs"><i class="fa-solid fa-plus"></i></div>';
-                $html .= '    <span class="text-[10px] text-slate-600 block mt-1">Available Slot</span>';
-                $html .= '  </div>';
+                // Empty Slot Box
+                $html .= '<div class="bg-slate-950/70 border border-dashed border-slate-800 rounded-xl p-2 ' . $cardWidth . ' text-center">';
+                $html .= '  <span class="text-[8px] font-bold uppercase text-slate-600 block mb-0.5">Pos ' . $pos . '</span>';
+                $html .= '  <div class="w-5 h-5 rounded-full bg-slate-900 text-slate-700 flex items-center justify-center mx-auto text-[10px]"><i class="fa-solid fa-plus"></i></div>';
+                $html .= '  <span class="text-[9px] text-slate-600 block mt-0.5">Available</span>';
                 $html .= '</div>';
             }
+            $html .= '</div>';
         }
+
         $html .= '</div>';
     }
 
