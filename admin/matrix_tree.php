@@ -70,7 +70,7 @@ require_once __DIR__ . '/../includes/admin_header.php';
 
 <!-- Visual Tree Display Canvas -->
 <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 overflow-x-auto min-h-[500px]">
-    <div class="min-w-[900px] flex justify-center py-6">
+    <div class="w-max mx-auto px-12 py-6">
         <?php if ($matrixTree): ?>
             <?= render_matrix_tree_html($matrixTree, 1, $treeDepth) ?>
         <?php else: ?>

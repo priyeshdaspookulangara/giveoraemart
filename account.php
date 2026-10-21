@@ -117,7 +117,7 @@ require_once __DIR__ . '/includes/header.php';
             </span>
         </div>
 
-        <div class="min-w-[700px] flex justify-center py-4">
+        <div class="w-max mx-auto px-12 py-4">
             <?php
             $userMatrixTree = get_matrix_tree_data($user['id'], 3);
             echo render_matrix_tree_html($userMatrixTree, 1, 3);
