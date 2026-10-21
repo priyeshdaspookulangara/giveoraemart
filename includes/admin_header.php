@@ -54,9 +54,13 @@ $activeTab = $activeTab ?? 'dashboard';
                     <i class="fa-solid fa-receipt w-5"></i>
                     <span>Orders</span>
                 </a>
+                <a href="/admin/matrix_tree.php" class="flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition <?= $activeTab === 'matrix_tree' ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' : 'text-slate-400 hover:bg-slate-900 hover:text-slate-200' ?>">
+                    <i class="fa-solid fa-sitemap w-5"></i>
+                    <span>3-Matrix Visual Tree</span>
+                </a>
                 <a href="/admin/commissions.php" class="flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition <?= $activeTab === 'commissions' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'text-slate-400 hover:bg-slate-900 hover:text-slate-200' ?>">
                     <i class="fa-solid fa-money-bill-transfer w-5"></i>
-                    <span>Commissions & Matrix</span>
+                    <span>Commissions & Ledger</span>
                 </a>
             </nav>
         </div>
