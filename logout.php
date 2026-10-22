@@ -1,7 +1,6 @@
 <?php
-// logout.php
-require_once __DIR__ . '/includes/functions.php';
+// logout.php - User Logout Handler
 
-unset($_SESSION['user']);
-header('Location: /login.php');
-exit;
+require_once __DIR__ . '/controllers/AuthController.php';
+
+AuthController::logout();

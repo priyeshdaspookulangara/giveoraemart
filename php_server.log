@@ -1,0 +1,45 @@
+[Thu Oct 22 02:25:26 2026] PHP 8.3.6 Development Server (http://127.0.0.1:8000) started
+[Thu Oct 22 02:25:28 2026] 127.0.0.1:47882 Accepted
+[Thu Oct 22 02:25:28 2026] Database Connection Error: Connection refused
+[Thu Oct 22 02:25:28 2026] 127.0.0.1:47882 [200]: HEAD /index.php
+[Thu Oct 22 02:25:28 2026] 127.0.0.1:47882 Closing
+[Thu Oct 22 02:27:17 2026] 127.0.0.1:51144 Accepted
+[Thu Oct 22 02:27:17 2026] Database Connection Error: Connection refused
+[Thu Oct 22 02:27:17 2026] 127.0.0.1:51144 [200]: GET /index.php
+[Thu Oct 22 02:27:17 2026] 127.0.0.1:51144 Closing
+[Thu Oct 22 02:27:18 2026] 127.0.0.1:51160 Accepted
+[Thu Oct 22 02:27:18 2026] Database Connection Error: Connection refused
+[Thu Oct 22 02:27:18 2026] 127.0.0.1:51160 [200]: GET /campaigns.php
+[Thu Oct 22 02:27:18 2026] 127.0.0.1:51160 Closing
+[Thu Oct 22 02:27:19 2026] 127.0.0.1:51162 Accepted
+[Thu Oct 22 02:27:19 2026] Database Connection Error: Connection refused
+[Thu Oct 22 02:27:19 2026] 127.0.0.1:51162 [200]: GET /campaign-detail.php?slug=clean-water-project
+[Thu Oct 22 02:27:19 2026] 127.0.0.1:51162 Closing
+[Thu Oct 22 02:27:20 2026] 127.0.0.1:51172 Accepted
+[Thu Oct 22 02:27:20 2026] Database Connection Error: Connection refused
+[Thu Oct 22 02:27:20 2026] 127.0.0.1:51172 [200]: GET /request-assistance.php
+[Thu Oct 22 02:27:20 2026] 127.0.0.1:51172 Closing
+[Thu Oct 22 02:27:21 2026] 127.0.0.1:51184 Accepted
+[Thu Oct 22 02:27:21 2026] Database Connection Error: Connection refused
+[Thu Oct 22 02:27:21 2026] 127.0.0.1:51184 [200]: GET /index.php
+[Thu Oct 22 02:27:21 2026] 127.0.0.1:51184 Closing
+[Thu Oct 22 02:28:54 2026] 127.0.0.1:52366 Accepted
+[Thu Oct 22 02:28:54 2026] Database Connection Warning: Connection refused
+[Thu Oct 22 02:28:54 2026] 127.0.0.1:52366 [200]: GET /index.php
+[Thu Oct 22 02:28:54 2026] 127.0.0.1:52366 Closing
+[Thu Oct 22 02:28:55 2026] 127.0.0.1:59118 Accepted
+[Thu Oct 22 02:28:55 2026] Database Connection Warning: Connection refused
+[Thu Oct 22 02:28:55 2026] 127.0.0.1:59118 [200]: GET /campaigns.php
+[Thu Oct 22 02:28:55 2026] 127.0.0.1:59118 Closing
+[Thu Oct 22 02:28:56 2026] 127.0.0.1:59126 Accepted
+[Thu Oct 22 02:28:56 2026] Database Connection Warning: Connection refused
+[Thu Oct 22 02:28:56 2026] 127.0.0.1:59126 [200]: GET /campaign-detail.php?slug=clean-water-project
+[Thu Oct 22 02:28:56 2026] 127.0.0.1:59126 Closing
+[Thu Oct 22 02:28:57 2026] 127.0.0.1:59130 Accepted
+[Thu Oct 22 02:28:57 2026] Database Connection Warning: Connection refused
+[Thu Oct 22 02:28:57 2026] 127.0.0.1:59130 [200]: GET /request-assistance.php
+[Thu Oct 22 02:28:57 2026] 127.0.0.1:59130 Closing
+[Thu Oct 22 02:28:59 2026] 127.0.0.1:59140 Accepted
+[Thu Oct 22 02:28:59 2026] Database Connection Warning: Connection refused
+[Thu Oct 22 02:28:59 2026] 127.0.0.1:59140 [200]: GET /index.php
+[Thu Oct 22 02:28:59 2026] 127.0.0.1:59140 Closing

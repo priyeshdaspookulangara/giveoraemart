@@ -1,73 +1,54 @@
 <?php
-// includes/footer.php
+// includes/footer.php - Responsive Public Footer
+require_once __DIR__ . '/helpers.php';
+$footerText = get_site_setting('footer_text', '© 2025 HopeCare Charity Foundation. All Rights Reserved.');
+$siteTitle = get_site_setting('site_title', 'HopeCare Charity Foundation');
 ?>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 text-sm mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-
-                <!-- Brand Info -->
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-2xl bg-emerald-500 text-slate-950 flex items-center justify-center font-black text-xl shadow-lg shadow-emerald-500/20">
-                            G
-                        </div>
-                        <div>
-                            <span class="font-extrabold text-lg text-white">Giveoraemart</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Your trusted one-stop marketplace for daily essential repurchase groceries and premium household purchases. Quality checked and delivered fresh to your doorstep.
-                    </p>
+<footer class="bg-dark text-white mt-auto pt-5 pb-3">
+    <div class="container">
+        <div class="row g-4 mb-4">
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-success fw-bold mb-3"><i class="fa-solid fa-hand-holding-heart me-2"></i><?= htmlspecialchars($siteTitle) ?></h5>
+                <p class="text-secondary small">Empowering underserved communities around the world through clean water, emergency healthcare, and sustainable educational opportunities.</p>
+                <div class="d-flex gap-2 text-white">
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Quick Navigation</h3>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="/shop.php" class="hover:text-emerald-400 transition">Browse Full Catalog</a></li>
-                        <li><a href="/shop.php?purchase_type=REPURCHASE" class="hover:text-emerald-400 transition">Daily Repurchase Essentials</a></li>
-                        <li><a href="/shop.php?type=package" class="hover:text-emerald-400 transition">Combo Package Deals</a></li>
-                        <li><a href="/cart.php" class="hover:text-emerald-400 transition">My Cart</a></li>
-                    </ul>
-                </div>
-
-                <!-- Customer Account & Guest -->
-                <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Account & Support</h3>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="/login.php" class="hover:text-emerald-400 transition">Customer Login / Signup</a></li>
-                        <li><a href="/account.php" class="hover:text-emerald-400 transition">Order History & Tracking</a></li>
-                        <li><a href="/wishlist.php" class="hover:text-emerald-400 transition">Saved Wishlist</a></li>
-                        <li><a href="/admin/login.php" class="text-slate-500 hover:text-emerald-400 transition">Admin Portal Access</a></li>
-                    </ul>
-                </div>
-
-                <!-- Newsletter / Contact -->
-                <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Stay Connected</h3>
-                    <p class="text-xs text-slate-400 mb-3">Subscribe to get instant alerts on monthly promotional package bundle discounts.</p>
-                    <div class="flex gap-2">
-                        <input type="email" placeholder="Your email..." class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 w-full">
-                        <button class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-3 py-2 rounded-xl text-xs transition">Join</button>
-                    </div>
-                </div>
-
             </div>
-
-            <div class="border-t border-slate-800/80 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-                <p>&copy; <?= date('Y') ?> Giveoraemart. All rights reserved.</p>
-                <div class="flex items-center gap-4">
-                    <span><i class="fa-solid fa-shield-halved text-emerald-500 mr-1"></i> Secure SSL Checkout</span>
-                    <span><i class="fa-solid fa-truck-fast text-emerald-500 mr-1"></i> Fast Delivery</span>
-                </div>
+            <div class="col-lg-2 col-md-6">
+                <h6 class="text-uppercase fw-bold mb-3 text-light">Quick Links</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><a href="index.php" class="text-secondary text-decoration-none">Home</a></li>
+                    <li class="mb-2"><a href="campaigns.php" class="text-secondary text-decoration-none">Active Campaigns</a></li>
+                    <li class="mb-2"><a href="request-assistance.php" class="text-secondary text-decoration-none">Request Aid</a></li>
+                    <li class="mb-2"><a href="blog.php" class="text-secondary text-decoration-none">Latest News</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h6 class="text-uppercase fw-bold mb-3 text-light">CMS Static Pages</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><a href="page.php?slug=about-us" class="text-secondary text-decoration-none">About Us</a></li>
+                    <li class="mb-2"><a href="page.php?slug=impact-stories" class="text-secondary text-decoration-none">Impact Stories</a></li>
+                    <li class="mb-2"><a href="page.php?slug=privacy-policy" class="text-secondary text-decoration-none">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h6 class="text-uppercase fw-bold mb-3 text-light">Contact Info</h6>
+                <p class="text-secondary small mb-1"><i class="fa-solid fa-envelope me-2 text-success"></i><?= htmlspecialchars(get_site_setting('contact_email', 'contact@charity.org')) ?></p>
+                <p class="text-secondary small mb-1"><i class="fa-solid fa-phone me-2 text-success"></i><?= htmlspecialchars(get_site_setting('helpline_number', '+1 (800) 555-0199')) ?></p>
+                <p class="text-secondary small"><i class="fa-solid fa-location-dot me-2 text-success"></i>Global Operations Center</p>
             </div>
         </div>
-    </footer>
+        <hr class="border-secondary">
+        <div class="text-center text-secondary small py-2">
+            <?= htmlspecialchars($footerText) ?>
+        </div>
+    </div>
+</footer>
 
-    <!-- Global App JS -->
-    <script src="/assets/js/app.js"></script>
+<!-- Bootstrap 5 JS Bundle CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,81 +1,61 @@
 <?php
-// login.php
-require_once __DIR__ . '/includes/functions.php';
+// login.php - User & Admin Login
 
-$error = '';
-$redirect = sanitize($_GET['redirect'] ?? '');
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/helpers.php';
+require_once __DIR__ . '/controllers/AuthController.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = sanitize($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
-
-    if (!empty($email) && !empty($password)) {
-        $pdo = get_db_connection();
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([$email]);
-        $user = $stmt->fetch();
-
-        if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user'] = [
-                'id' => $user['id'],
-                'name' => $user['name'],
-                'email' => $user['email'],
-                'role' => $user['role']
-            ];
-
-            if ($redirect === 'checkout') {
-                header('Location: /checkout.php');
-            } elseif ($user['role'] === 'ADMIN') {
-                header('Location: /admin/index.php');
-            } else {
-                header('Location: /account.php');
-            }
-            exit;
-        } else {
-            $error = 'Invalid email or password.';
-        }
-    } else {
-        $error = 'Please fill in all fields.';
-    }
+    AuthController::handleLogin();
+    exit;
 }
 
-$pageTitle = 'Customer Login - Giveoraemart';
+if (is_logged_in()) {
+    $user = current_user();
+    if (in_array($user['role'], ['admin', 'editor'])) {
+        header('Location: admin/index.php');
+    } else {
+        header('Location: index.php');
+    }
+    exit;
+}
+
 require_once __DIR__ . '/includes/header.php';
 ?>
 
-<div class="max-w-md mx-auto my-16 bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl">
-    <div class="text-center mb-8">
-        <h1 class="text-2xl font-bold text-white">Sign In To Your Account</h1>
-        <p class="text-xs text-slate-400 mt-1">Access order history, saved addresses, and repurchase list</p>
-    </div>
+<div class="container py-5 my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden bg-white">
+                <div class="bg-success text-white text-center p-4">
+                    <i class="fa-solid fa-lock fa-3x mb-2"></i>
+                    <h3 class="fw-bold mb-0">Sign In to Your Account</h3>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                    <form action="login.php" method="POST">
+                        <?= csrf_input() ?>
 
-    <?php if ($error): ?>
-        <div class="mb-6 p-4 bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs rounded-xl flex items-center gap-3">
-            <i class="fa-solid fa-circle-exclamation text-sm"></i>
-            <span><?= $error ?></span>
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Email Address</label>
+                            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="admin@charity.org" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label fw-bold">Password</label>
+                            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="••••••••" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-lg w-100 rounded-pill fw-bold mb-3 shadow">
+                            <i class="fa-solid fa-right-to-bracket me-2"></i> Log In
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-3 small text-muted">
+                        Don't have an account yet? <a href="register.php" class="text-success fw-bold text-decoration-none">Register here</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    <?php endif; ?>
-
-    <form method="POST" class="space-y-4">
-        <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email Address</label>
-            <input type="email" name="email" value="john@example.com" required
-                   class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-emerald-500">
-        </div>
-
-        <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Password</label>
-            <input type="password" name="password" value="customer123" required
-                   class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-emerald-500">
-        </div>
-
-        <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3.5 px-4 rounded-xl transition text-xs shadow-lg shadow-emerald-500/20">
-            Sign In
-        </button>
-    </form>
-
-    <div class="mt-6 text-center text-xs text-slate-400">
-        Don't have an account? <a href="/register.php" class="text-emerald-400 font-bold hover:underline">Register Now</a>
     </div>
 </div>
 
