@@ -88,7 +88,7 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
             </div>
             <div class="text-3xl font-extrabold text-blue-400"><?= format_price($earnings['level_total']) ?></div>
-            <p class="text-[11px] text-slate-500 mt-1">L1: $500, L2: $250, L3: $200, L4: $150, L5: $100, L6: $50, L7: $50</p>
+            <p class="text-[11px] text-slate-500 mt-1">L1: $500, L2: $200, L3: $100, L4: $100, L5: $100, L6: $50, L7: $50</p>
         </div>
 
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">

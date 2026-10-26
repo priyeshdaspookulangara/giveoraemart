@@ -152,16 +152,16 @@ function distribute_matrix_commissions($fromUserId, $orderId = null) {
 
 /**
  * Distributes level referral income across 7 sponsor levels:
- * Level 1: $500, Level 2: $250, Level 3: $200, Level 4: $150, Level 5: $100, Level 6: $50, Level 7: $50
+ * Level 1: $500, Level 2: $200, Level 3: $100, Level 4: $100, Level 5: $100, Level 6: $50, Level 7: $50
  */
 function distribute_level_commissions($fromUserId, $orderId = null) {
     $pdo = get_db_connection();
 
     $levelAmounts = [
         1 => 500.00,
-        2 => 250.00,
-        3 => 200.00,
-        4 => 150.00,
+        2 => 200.00,
+        3 => 100.00,
+        4 => 100.00,
         5 => 100.00,
         6 => 50.00,
         7 => 50.00

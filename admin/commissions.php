@@ -38,7 +38,7 @@ require_once __DIR__ . '/../includes/admin_header.php';
     <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6">
         <span class="text-xs font-bold uppercase text-slate-400 block mb-2">7-Level Referral Payouts</span>
         <div class="text-3xl font-extrabold text-blue-400"><?= format_price($totalLevelPayout) ?></div>
-        <p class="text-xs text-slate-500 mt-1">L1: $500, L2: $250, L3: $200, L4: $150, L5: $100, L6: $50, L7: $50</p>
+        <p class="text-xs text-slate-500 mt-1">L1: $500, L2: $200, L3: $100, L4: $100, L5: $100, L6: $50, L7: $50</p>
     </div>
 
     <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6">
