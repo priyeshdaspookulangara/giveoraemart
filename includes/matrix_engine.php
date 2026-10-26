@@ -140,11 +140,9 @@ function distribute_matrix_commissions($fromUserId, $orderId = null) {
 
         $parentId = $row['matrix_parent_id'];
 
-        // Qualification Check: Parent MUST have referred at least 3 direct members
-        if (is_matrix_qualified($parentId)) {
-            $matrixAmount = $matrixLevelUsdtPayouts[$level] ?? 1.05;
-            $insStmt->execute([$parentId, $fromUserId, $orderId, $matrixAmount, $level]);
-        }
+        // Record Matrix Commission for parent (withdrawable or reserved depending on referral qualification)
+        $matrixAmount = $matrixLevelUsdtPayouts[$level] ?? 1.05;
+        $insStmt->execute([$parentId, $fromUserId, $orderId, $matrixAmount, $level]);
 
         $currentChildId = $parentId;
     }
@@ -189,7 +187,7 @@ function distribute_level_commissions($fromUserId, $orderId = null) {
 }
 
 /**
- * Calculates total earnings breakdown for a user.
+ * Calculates total earnings breakdown & wallet withdrawal eligibility for a user.
  */
 function get_user_earnings($userId) {
     $pdo = get_db_connection();
@@ -205,10 +203,23 @@ function get_user_earnings($userId) {
     $stmt->execute([$userId]);
     $totals = $stmt->fetch();
 
+    $matrixTotal = (float)($totals['matrix_total'] ?? 0.00);
+    $levelTotal = (float)($totals['level_total'] ?? 0.00);
+    $grandTotal = (float)($totals['grand_total'] ?? 0.00);
+
+    $isQualified = is_matrix_qualified($userId);
+
+    // If 3+ direct referrals, matrix income is withdrawable. Otherwise reserved/locked.
+    $withdrawableBalance = $levelTotal + ($isQualified ? $matrixTotal : 0.00);
+    $reservedMatrixBalance = $isQualified ? 0.00 : $matrixTotal;
+
     return [
-        'matrix_total' => (float)($totals['matrix_total'] ?? 0.00),
-        'level_total' => (float)($totals['level_total'] ?? 0.00),
-        'grand_total' => (float)($totals['grand_total'] ?? 0.00)
+        'matrix_total' => $matrixTotal,
+        'level_total' => $levelTotal,
+        'grand_total' => $grandTotal,
+        'withdrawable_balance' => $withdrawableBalance,
+        'reserved_matrix_balance' => $reservedMatrixBalance,
+        'is_matrix_unlocked' => $isQualified
     ];
 }
 

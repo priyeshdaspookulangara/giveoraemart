@@ -63,20 +63,45 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     </div>
 
+    <!-- Wallet Balance Summary Header Card -->
+    <div class="bg-gradient-to-r from-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 md:p-8 mb-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1"><i class="fa-solid fa-wallet mr-1.5"></i> Wallet Withdrawal Balance</span>
+            <div class="text-4xl font-black text-white"><?= format_price($earnings['withdrawable_balance']) ?></div>
+            <p class="text-xs text-slate-400 mt-1">Available for instant payout withdrawal.</p>
+        </div>
+
+        <div class="flex items-center gap-4 bg-slate-950/80 p-4 rounded-2xl border border-slate-800 text-xs">
+            <div>
+                <span class="text-slate-500 block font-semibold text-[10px] uppercase">Reserved Matrix Vault:</span>
+                <span class="text-amber-400 font-extrabold text-base"><?= number_format($earnings['reserved_matrix_balance'], 2) ?> USDT</span>
+            </div>
+            <?php if ($earnings['is_matrix_unlocked']): ?>
+                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1">
+                    <i class="fa-solid fa-lock-open text-xs"></i> Unlocked
+                </span>
+            <?php else: ?>
+                <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1">
+                    <i class="fa-solid fa-lock text-xs"></i> Locked (3 Referrals Needed)
+                </span>
+            <?php endif; ?>
+        </div>
+    </div>
+
     <!-- Earnings Overview Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
             <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">3-Matrix Spillover Income (USDT)</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">3-Matrix Spillover Income</span>
                 <?php if ($isQualified): ?>
-                    <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full text-[10px] font-bold">QUALIFIED</span>
+                    <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full text-[10px] font-bold">WITHDRAWABLE</span>
                 <?php else: ?>
-                    <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-full text-[10px] font-bold"><?= 3 - $directReferralCount ?> MORE REFS NEEDED</span>
+                    <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-full text-[10px] font-bold">RESERVED VAULT</span>
                 <?php endif; ?>
             </div>
             <div class="text-3xl font-extrabold text-purple-400"><?= number_format($earnings['matrix_total'], 2) ?> USDT</div>
             <p class="text-[11px] text-slate-500 mt-1">
-                <?= $isQualified ? 'Auto BFS 11-level matrix active (L1-L7: ~1.05 USDT, L8-L11: ~5.25 USDT)' : 'Refer at least 3 members to unlock matrix income' ?>
+                <?= $isQualified ? 'Unlocked & Withdrawable (3+ direct referrals complete)' : 'Earned matrix income is stored in Reserved Vault until 3 direct referrals milestone is reached.' ?>
             </p>
         </div>
 
@@ -88,7 +113,7 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
             </div>
             <div class="text-3xl font-extrabold text-blue-400"><?= format_price($earnings['level_total']) ?></div>
-            <p class="text-[11px] text-slate-500 mt-1">L1: $500, L2: $200, L3: $100, L4: $100, L5: $100, L6: $50, L7: $50</p>
+            <p class="text-[11px] text-slate-500 mt-1">Directly withdrawable referral bonuses (L1: $500, L2: $200...)</p>
         </div>
 
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
@@ -99,7 +124,7 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
             </div>
             <div class="text-3xl font-black text-emerald-400"><?= format_price($earnings['grand_total']) ?></div>
-            <p class="text-[11px] text-slate-500 mt-1">Accumulated income total</p>
+            <p class="text-[11px] text-slate-500 mt-1">Accumulated income total (Level + Matrix)</p>
         </div>
     </div>
 
