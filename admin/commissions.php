@@ -24,14 +24,14 @@ require_once __DIR__ . '/../includes/admin_header.php';
 
 <div class="mb-8">
     <h1 class="text-3xl font-extrabold text-white tracking-tight">Commissions & Incentive Ledger</h1>
-    <p class="text-slate-400 text-sm mt-1">Monitor 3-Matrix BFS auto-spillover payouts ($50 per placement across 11 levels) and 7-Level referral incentives.</p>
+    <p class="text-slate-400 text-sm mt-1">Monitor 3-Matrix BFS auto-spillover payouts (USDT per placement across 11 levels) and 7-Level referral incentives.</p>
 </div>
 
 <!-- Stats -->
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
     <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6">
-        <span class="text-xs font-bold uppercase text-slate-400 block mb-2">3-Matrix Payouts ($50/head)</span>
-        <div class="text-3xl font-extrabold text-purple-400"><?= format_price($totalMatrixPayout) ?></div>
+        <span class="text-xs font-bold uppercase text-slate-400 block mb-2">3-Matrix Payouts (USDT)</span>
+        <div class="text-3xl font-extrabold text-purple-400"><?= number_format($totalMatrixPayout, 2) ?> USDT</div>
         <p class="text-xs text-slate-500 mt-1">11-Level Matrix Spillover</p>
     </div>
 

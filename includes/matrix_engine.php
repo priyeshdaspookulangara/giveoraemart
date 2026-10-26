@@ -92,11 +92,38 @@ function get_direct_referral_count($userId) {
 }
 
 /**
- * Distributes $50 per head across 11 levels up the 3-matrix tree.
+ * Distributes level-specific USDT per head across 11 levels up the 3-matrix tree.
  * QUALIFICATION REQUIREMENT: User must have referred at least 3 direct members to earn matrix income.
+ *
+ * Level Per-Member Payouts (USDT):
+ * L1: 1.05 USDT (Total L1: 3.15 USDT)
+ * L2: 1.05 USDT (Total L2: 9.45 USDT)
+ * L3: 1.05037 USDT (Total L3: 28.36 USDT)
+ * L4: 1.05037 USDT (Total L4: 85.08 USDT)
+ * L5: 1.05041 USDT (Total L5: 255.25 USDT)
+ * L6: 1.050425 USDT (Total L6: 765.76 USDT)
+ * L7: 1.05042 USDT (Total L7: 2,297.27 USDT)
+ * L8: 5.2521 USDT (Total L8: 34,459.03 USDT)
+ * L9: 5.2521 USDT (Total L9: 103,377.10 USDT)
+ * L10: 5.2521 USDT (Total L10: 310,131.30 USDT)
+ * L11: 5.2521 USDT (Total L11: 930,393.91 USDT)
  */
 function distribute_matrix_commissions($fromUserId, $orderId = null) {
     $pdo = get_db_connection();
+
+    $matrixLevelUsdtPayouts = [
+        1  => 1.05,
+        2  => 1.05,
+        3  => 1.05037,
+        4  => 1.05037,
+        5  => 1.05041,
+        6  => 1.050425,
+        7  => 1.05042,
+        8  => 5.2521,
+        9  => 5.2521,
+        10 => 5.2521,
+        11 => 5.2521
+    ];
 
     $currUserStmt = $pdo->prepare("SELECT matrix_parent_id FROM users WHERE id = ?");
     $insStmt = $pdo->prepare("INSERT INTO commissions (user_id, from_user_id, order_id, amount, income_type, level) VALUES (?, ?, ?, ?, 'MATRIX', ?)");
@@ -115,7 +142,7 @@ function distribute_matrix_commissions($fromUserId, $orderId = null) {
 
         // Qualification Check: Parent MUST have referred at least 3 direct members
         if (is_matrix_qualified($parentId)) {
-            $matrixAmount = 50.00; // $50 per head in all 11 matrix levels
+            $matrixAmount = $matrixLevelUsdtPayouts[$level] ?? 1.05;
             $insStmt->execute([$parentId, $fromUserId, $orderId, $matrixAmount, $level]);
         }
 

@@ -67,16 +67,16 @@ require_once __DIR__ . '/includes/header.php';
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
             <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">3-Matrix Spillover Income ($50/head)</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">3-Matrix Spillover Income (USDT)</span>
                 <?php if ($isQualified): ?>
                     <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full text-[10px] font-bold">QUALIFIED</span>
                 <?php else: ?>
                     <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-full text-[10px] font-bold"><?= 3 - $directReferralCount ?> MORE REFS NEEDED</span>
                 <?php endif; ?>
             </div>
-            <div class="text-3xl font-extrabold text-purple-400"><?= format_price($earnings['matrix_total']) ?></div>
+            <div class="text-3xl font-extrabold text-purple-400"><?= number_format($earnings['matrix_total'], 2) ?> USDT</div>
             <p class="text-[11px] text-slate-500 mt-1">
-                <?= $isQualified ? 'Auto BFS 11-level matrix active ($50/head)' : 'Refer at least 3 members to unlock matrix income' ?>
+                <?= $isQualified ? 'Auto BFS 11-level matrix active (L1-L7: ~1.05 USDT, L8-L11: ~5.25 USDT)' : 'Refer at least 3 members to unlock matrix income' ?>
             </p>
         </div>
 
