@@ -15,11 +15,13 @@ CREATE TABLE `users` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL UNIQUE,
+    `phone` VARCHAR(50) DEFAULT NULL,
     `password` VARCHAR(255) NOT NULL,
     `role` ENUM('ADMIN', 'CUSTOMER') NOT NULL DEFAULT 'CUSTOMER',
     `sponsor_id` INT DEFAULT NULL,
     `matrix_parent_id` INT DEFAULT NULL,
     `matrix_position` TINYINT DEFAULT NULL,
+    `txn_id` VARCHAR(255) DEFAULT NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`sponsor_id`) REFERENCES `users`(`id`) ON DELETE SET NULL,
     FOREIGN KEY (`matrix_parent_id`) REFERENCES `users`(`id`) ON DELETE SET NULL
@@ -74,6 +76,8 @@ CREATE TABLE `orders` (
     `guest_phone` VARCHAR(50) DEFAULT NULL,
     `shipping_address` TEXT NOT NULL,
     `total_amount` DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    `payment_method` ENUM('COD', 'UPI') NOT NULL DEFAULT 'COD',
+    `txn_id` VARCHAR(255) DEFAULT NULL,
     `status` ENUM('PENDING', 'PAID', 'SHIPPED', 'DELIVERED') NOT NULL DEFAULT 'PENDING',
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE SET NULL
