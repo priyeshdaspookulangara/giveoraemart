@@ -30,21 +30,20 @@ $amount = $order ? $order['total_amount'] : 0.00;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $txnId = trim($_POST['txn_id'] ?? '');
 
-    if (empty($txnId)) {
+    if (!$order) {
+        $error = 'Invalid order session. Please place an order first before making payment.';
+    } elseif (empty($txnId)) {
         $error = 'Please enter a valid UPI Transaction Reference ID (UTR / Txn ID).';
     } else {
         $pdo = get_db_connection();
 
-        // If order exists, update status to PAID and attach txn_id
-        if ($order) {
-            $updateStmt = $pdo->prepare("UPDATE orders SET status = 'PAID', txn_id = ? WHERE id = ?");
-            $updateStmt->execute([$txnId, $orderId]);
+        $updateStmt = $pdo->prepare("UPDATE orders SET status = 'PAID', txn_id = ? WHERE id = ?");
+        $updateStmt->execute([$txnId, $orderId]);
 
-            if ($order['user_id']) {
-                require_once __DIR__ . '/includes/matrix_engine.php';
-                distribute_level_commissions($order['user_id'], $orderId);
-                distribute_matrix_commissions($order['user_id'], $orderId);
-            }
+        if ($order['user_id']) {
+            require_once __DIR__ . '/includes/matrix_engine.php';
+            distribute_level_commissions($order['user_id'], $orderId);
+            distribute_matrix_commissions($order['user_id'], $orderId);
         }
 
         // Set verified payment state in session
@@ -85,13 +84,12 @@ require_once __DIR__ . '/includes/header.php';
     <!-- QR Code & VPA Display Box -->
     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 text-center mb-6 space-y-4">
         <div class="inline-block p-3 bg-white rounded-2xl shadow-xl">
-            <!-- Simulated UPI QR Code image -->
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=prafuldass@oksbi%26pn=Giveoraemart%26am=<?= $amount ?>" alt="UPI QR Code" class="w-44 h-44 mx-auto rounded-lg">
+            <img src="/assets/images/upi-qr.png" alt="GEETHANJALI ASSOCIATES UPI QR Code" class="max-w-xs mx-auto rounded-lg object-contain">
         </div>
 
         <div>
             <div class="text-[11px] uppercase tracking-wider text-slate-500 font-bold">UPI ID / VPA</div>
-            <div class="text-emerald-400 font-mono font-bold text-sm select-all">prafuldass@oksbi</div>
+            <div class="text-emerald-400 font-mono font-bold text-sm select-all">prafuldass@oksbi (8078550130@sbi)</div>
         </div>
 
         <div class="text-slate-400 text-xs flex justify-center items-center gap-3 pt-2 border-t border-slate-900">
