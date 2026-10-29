@@ -2,185 +2,129 @@
 // welfare-schemes.php
 require_once __DIR__ . '/includes/functions.php';
 
-$pageTitle = 'Welfare Schemes - Giveoraemart Ecosystem';
+$pageTitle = 'Giveoraemart – Welfare Schemes & Community Protection';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+<!-- Hero Section -->
+<section class="hero" style="background:var(--navy)">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Social Upliftment & Community Welfare Protection</h1>
+      <p>Commerce meets compassion at Giveoraemart. A dedicated portion of ecosystem earnings powers financial aid, medical coverage, and student scholarship grants for our active community members.</p>
+      <div class="cta">
+        <a class="btn" href="#charity">Charity Support Scheme</a>
+        <a class="btn ghost" href="#vidya-vikas">Vidya Vikas Scheme</a>
+      </div>
+    </div>
+    <aside class="panel" aria-label="Welfare Pool Highlights">
+      <h3>100% Ecosystem Funded</h3>
+      <p>Active members receive automatic health and educational coverage.</p>
+      <div class="item">
+        <div><strong>Charity Support Payout</strong><span>Up to 60 monthly cycles</span></div>
+        <b style="color:var(--gold)">₹3,000 / mo</b>
+      </div>
+      <div class="item">
+        <div><strong>Max Health Insurance Cover</strong><span>Hospitalisation & Critical Care</span></div>
+        <b>₹10 Lakh</b>
+      </div>
+    </aside>
+  </div>
+</section>
 
-    <!-- Hero / Header Section -->
-    <div class="relative overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 p-8 md:p-12 text-center space-y-4">
-        <div class="absolute -right-20 -top-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <span class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase">
-            <i class="fa-solid fa-hand-holding-heart text-amber-400"></i> Social Upliftment & Community Care
-        </span>
-
-        <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight">
-            Giveoraemart Welfare Schemes
-        </h1>
-
-        <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-            At Giveoraemart, commerce meets compassion. We allocate a dedicated pool of ecosystem earnings to support our active members and their families during critical life events and educational journeys.
-        </p>
-
-        <div class="flex flex-wrap justify-center gap-4 pt-4 text-xs font-bold">
-            <a href="#charity-scheme" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 px-6 py-3 rounded-xl transition flex items-center gap-2 shadow-lg shadow-emerald-500/10">
-                <i class="fa-solid fa-heart-pulse"></i> Charity Support
-            </a>
-            <a href="#vidya-vikas" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-6 py-3 rounded-xl transition flex items-center gap-2">
-                <i class="fa-solid fa-graduation-cap text-amber-400"></i> Vidya Vikas Scheme
-            </a>
-        </div>
+<!-- Scheme 1: Charity Support Scheme -->
+<section id="charity" class="s" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Charity Support Scheme</h2>
+        <p>Comprehensive health protection, ongoing family financial support, and emergency disaster assistance.</p>
+      </div>
+      <span class="badge" style="background:rgba(183,133,43,0.15);color:var(--gold);font-size:14px;padding:6px 14px">Tier: ₹10,000 & Above</span>
     </div>
 
-    <!-- Scheme 1: Charity Support Scheme -->
-    <div id="charity-scheme" class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-10 space-y-8 scroll-mt-24">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-800 pb-6">
-            <div class="flex items-center gap-4">
-                <div class="w-14 h-14 bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-2xl flex items-center justify-center text-2xl font-bold">
-                    <i class="fa-solid fa-hand-holding-medical"></i>
-                </div>
-                <div>
-                    <span class="text-xs uppercase font-bold text-rose-400 tracking-wider">Healthcare & Emergency Aid</span>
-                    <h2 class="text-2xl font-extrabold text-white">Charity Support Scheme</h2>
-                </div>
-            </div>
-            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-xl text-xs font-bold self-start md:self-auto">
-                <i class="fa-solid fa-shield-check mr-1"></i> 100% Ecosystem Funded
-            </span>
-        </div>
+    <div class="split">
+      <article class="scheme">
+        <span class="tag">Support Tier from ₹10,000 · 60 Payout Cycles</span>
+        <h3>Monthly Income Aid & EMI Cover</h3>
+        <p>Direct financial relief paid monthly for 60 consecutive cycles to member families in need.</p>
+        <ul>
+          <li><strong>₹3,000 × 60 cycles</strong> guaranteed monthly support payout</li>
+          <li>EMI assistance for hospital and medical loans over ₹50,000</li>
+          <li>Accidental bereavement grant for immediate dependants</li>
+        </ul>
+      </article>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Feature 1 -->
-            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
-                <i class="fa-solid fa-hospital text-emerald-400 text-2xl"></i>
-                <h3 class="text-sm font-bold text-white">Emergency Medical Assistance</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Financial assistance granted up to $2,000 for unexpected hospitalizations, critical surgeries, or emergency healthcare expenses.
-                </p>
-            </div>
-            <!-- Feature 2 -->
-            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
-                <i class="fa-solid fa-people-roof text-amber-400 text-2xl"></i>
-                <h3 class="text-sm font-bold text-white">Family Security Net</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    In the unfortunate event of permanent disability or bereavement of an active member, direct family support grants are provided.
-                </p>
-            </div>
-            <!-- Feature 3 -->
-            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
-                <i class="fa-solid fa-kit-medical text-rose-400 text-2xl"></i>
-                <h3 class="text-sm font-bold text-white">Disaster Relief Fund</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Immediate relief hampers, basic necessity packs, and structural rebuilding assistance during natural disasters or accidents.
-                </p>
-            </div>
-        </div>
-
-        <!-- Eligibility & How it Works -->
-        <div class="bg-slate-950/60 rounded-2xl p-6 border border-slate-800/80 grid grid-cols-1 md:grid-cols-2 gap-8 text-xs">
-            <div class="space-y-3">
-                <h4 class="font-bold text-slate-200 uppercase tracking-wider text-xs flex items-center gap-2">
-                    <i class="fa-solid fa-circle-check text-emerald-400"></i> Eligibility Criteria
-                </h4>
-                <ul class="space-y-2 text-slate-400 list-disc list-inside leading-relaxed">
-                    <li>Must be a registered Giveoraemart member with an active account.</li>
-                    <li>Completion of basic account profile verification (KYC & Phone verification).</li>
-                    <li>Referral activity or minimum matrix package subscription enhances approval priority.</li>
-                </ul>
-            </div>
-            <div class="space-y-3">
-                <h4 class="font-bold text-slate-200 uppercase tracking-wider text-xs flex items-center gap-2">
-                    <i class="fa-solid fa-file-lines text-amber-400"></i> How to Submit a Claim
-                </h4>
-                <p class="text-slate-400 leading-relaxed">
-                    Submit authentic medical discharge summaries, hospital bills, or relevant government emergency certificates through the user dashboard or directly via customer support.
-                </p>
-            </div>
-        </div>
+      <article class="scheme" style="border-top-color:var(--blue)">
+        <span class="tag" style="color:var(--blue)">Comprehensive Medical Insurance</span>
+        <h3>Family Health Insurance Policy</h3>
+        <p>Full hospitalization coverage protecting member households against critical medical emergencies.</p>
+        <ul>
+          <li><strong>₹10 Lakh</strong> maximum cover for female members</li>
+          <li><strong>₹5 Lakh</strong> maximum cover for male members</li>
+          <li>Cashless admission across partnered medical centers</li>
+        </ul>
+      </article>
     </div>
 
-    <!-- Scheme 2: Vidya Vikas Scheme -->
-    <div id="vidya-vikas" class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-10 space-y-8 scroll-mt-24">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-800 pb-6">
-            <div class="flex items-center gap-4">
-                <div class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-2xl font-bold">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <div>
-                    <span class="text-xs uppercase font-bold text-amber-400 tracking-wider">Education & Youth Empowerment</span>
-                    <h2 class="text-2xl font-extrabold text-white">Vidya Vikas Educational Scheme</h2>
-                </div>
-            </div>
-            <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-4 py-2 rounded-xl text-xs font-bold self-start md:self-auto">
-                <i class="fa-solid fa-award mr-1"></i> Youth Empowerment
-            </span>
-        </div>
+    <!-- Eligibility Box -->
+    <div class="panel" style="margin-top:32px;background:var(--card);border:1px solid var(--line)">
+      <h3 style="font-size:1rem;margin-bottom:8px">Eligibility & Claim Process</h3>
+      <p style="font-size:14px;margin-bottom:12px;color:var(--muted)">Must be an active Giveoraemart member with verified profile details. Submit valid medical discharge certificates, hospital bills, or emergency documentation directly through your account dashboard or support helpline.</p>
+    </div>
+  </div>
+</section>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Feature 1 -->
-            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
-                <i class="fa-solid fa-book-open-reader text-amber-400 text-2xl"></i>
-                <h3 class="text-sm font-bold text-white">School & College Fee Grants</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Annual educational subsidies to assist with school tuition fees, college admission costs, and examination fees for children of members.
-                </p>
-            </div>
-            <!-- Feature 2 -->
-            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
-                <i class="fa-solid fa-laptop-code text-emerald-400 text-2xl"></i>
-                <h3 class="text-sm font-bold text-white">Digital Learning Kits</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Sponsorship for tablets, laptops, and digital learning tools to empower students in higher secondary and vocational courses.
-                </p>
-            </div>
-            <!-- Feature 3 -->
-            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3">
-                <i class="fa-solid fa-star-exclamation text-rose-400 text-2xl"></i>
-                <h3 class="text-sm font-bold text-white">Merit Excellence Awards</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Special financial awards and certificates of distinction for students scoring above 85% in board or degree examinations.
-                </p>
-            </div>
-        </div>
-
-        <!-- Application Process -->
-        <div class="bg-slate-950/60 rounded-2xl p-6 border border-slate-800/80 grid grid-cols-1 md:grid-cols-2 gap-8 text-xs">
-            <div class="space-y-3">
-                <h4 class="font-bold text-slate-200 uppercase tracking-wider text-xs flex items-center gap-2">
-                    <i class="fa-solid fa-circle-check text-emerald-400"></i> Who Can Qualify?
-                </h4>
-                <ul class="space-y-2 text-slate-400 list-disc list-inside leading-relaxed">
-                    <li>Dependent children of verified Giveoraemart members.</li>
-                    <li>Students enrolled in recognized primary, secondary, or undergraduate educational institutions.</li>
-                </ul>
-            </div>
-            <div class="space-y-3">
-                <h4 class="font-bold text-slate-200 uppercase tracking-wider text-xs flex items-center gap-2">
-                    <i class="fa-solid fa-graduation-cap text-amber-400"></i> Required Documentation
-                </h4>
-                <p class="text-slate-400 leading-relaxed">
-                    Upload latest marksheet/grade card, student ID card, and current academic year fee receipt via the account support desk.
-                </p>
-            </div>
-        </div>
+<!-- Scheme 2: Vidya Vikas Scheme -->
+<section id="vidya-vikas" class="s">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Vidya Vikas Educational Scheme</h2>
+        <p>Empowering young minds through health cover, accident protection, and merit scholarships.</p>
+      </div>
+      <span class="badge" style="background:rgba(31,138,91,0.15);color:var(--green);font-size:14px;padding:6px 14px">Youth Protection</span>
     </div>
 
-    <!-- Call To Action -->
-    <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-amber-950 border border-slate-800 rounded-3xl p-8 text-center space-y-4">
-        <h3 class="text-xl font-bold text-white">Ready to join a community that gives back?</h3>
-        <p class="text-xs text-slate-300 max-w-xl mx-auto leading-relaxed">
-            Every product purchased and package activated directly funds our welfare pools. Register today to be part of the Giveoraemart family.
-        </p>
-        <div class="pt-2">
-            <a href="/register.php" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold px-8 py-3.5 rounded-xl transition text-xs shadow-xl shadow-emerald-500/20">
-                Join Giveoraemart Now <i class="fa-solid fa-arrow-right"></i>
-            </a>
-        </div>
+    <div class="split">
+      <article class="scheme" style="border-top-color:var(--green)">
+        <span class="tag" style="color:var(--green)">Student Health & Accident Cover</span>
+        <h3>Student Medical & Safety Net</h3>
+        <p>Dedicated medical coverage and accidental death cover for active students and parents.</p>
+        <ul>
+          <li><strong>₹2 Lakh</strong> health insurance cover for enrolled students</li>
+          <li><strong>₹50,000</strong> accidental death protection for students</li>
+          <li><strong>₹4 Lakh</strong> accidental death cover for parent policyholder</li>
+        </ul>
+      </article>
+
+      <article class="scheme" style="border-top-color:var(--blue)">
+        <span class="tag" style="color:var(--blue)">Education Grants & Merit Awards</span>
+        <h3>Scholarships & Digital Learning</h3>
+        <p>Subsidies for tuition fees, digital learning equipment, and academic excellence prizes.</p>
+        <ul>
+          <li>Tuition & exam fee grants for primary and higher secondary students</li>
+          <li>Sponsorship for digital learning tablets and laptops</li>
+          <li>Excellence awards for students scoring above 85%</li>
+        </ul>
+      </article>
     </div>
 
-</div>
+    <!-- Eligibility Box -->
+    <div class="panel" style="margin-top:32px;background:var(--card);border:1px solid var(--line)">
+      <h3 style="font-size:1rem;margin-bottom:8px">Who Qualifies & Required Documents</h3>
+      <p style="font-size:14px;margin-bottom:12px;color:var(--muted)">Dependant children of registered members enrolled in recognized schools or universities. Upload recent marksheets, student ID cards, and tuition receipts to initiate scholarship or claim requests.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Bar -->
+<section class="s welfare" style="padding:48px 0">
+  <div class="wrap text-center" style="text-align:center">
+    <h2>Ready to join a community that gives back?</h2>
+    <p style="color:#c5d1e0;margin:12px auto 24px;max-width:500px">Every repurchase and package bundle purchase directly sustains our community welfare pool.</p>
+    <a class="btn" style="background:#fff;color:var(--navy);border-color:#fff" href="/register.php">Register Account Today</a>
+  </div>
+</section>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
