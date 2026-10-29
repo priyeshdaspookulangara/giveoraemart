@@ -24,7 +24,7 @@ require_once __DIR__ . '/includes/header.php';
         <p class="text-slate-400 text-sm mt-1">Complete your order as guest or logged in user.</p>
     </div>
 
-    <form action="/api/checkout.php" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <form action="api/checkout.php" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
         <!-- Contact & Delivery Details (Left 2 cols) -->
         <div class="lg:col-span-2 space-y-6">

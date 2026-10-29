@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Redirect to registration page after successful payment
-        header("Location: /register.php");
+        header("Location: register.php");
         exit;
     }
 }

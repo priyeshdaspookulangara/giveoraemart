@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'email' => $guestEmail,
                 'phone' => $guestPhone
             ];
-            header("Location: /payment.php?order_id=" . $orderId);
+            header("Location: ../payment.php?order_id=" . $orderId);
             exit;
         }
 
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             distribute_matrix_commissions($userId, $orderId);
         }
 
-        header("Location: /order-success.php?id=" . $orderId);
+        header("Location: ../order-success.php?id=" . $orderId);
         exit;
 
     } catch (Exception $e) {
