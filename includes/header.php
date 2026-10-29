@@ -183,7 +183,7 @@ footer .btn{padding:10px 16px;background:#fff;color:var(--navy);border-color:#ff
         <?php endif; ?>
         <a href="/logout.php" style="color:var(--muted)">Logout</a>
       <?php else: ?>
-        <a href="/login.php">Sign in</a>
+        <a href="/login.php" id="open-login-btn" onclick="openAuthModal('signin'); return false;">Sign in</a>
       <?php endif; ?>
       <a class="cart" href="/cart.php" aria-label="Cart">Cart<span id="nav-cart-count"><?= $cartCount ?></span></a>
     </nav>
