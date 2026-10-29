@@ -84,7 +84,7 @@ require_once __DIR__ . '/includes/header.php';
     <!-- QR Code & VPA Display Box -->
     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 text-center mb-6 space-y-4">
         <div class="inline-block p-3 bg-white rounded-2xl shadow-xl">
-            <img src="/assets/images/upi-qr.png" alt="GEETHANJALI ASSOCIATES UPI QR Code" class="max-w-xs mx-auto rounded-lg object-contain">
+            <img src="assets/images/upi-qr.png" alt="GEETHANJALI ASSOCIATES UPI QR Code" class="max-w-xs mx-auto rounded-lg object-contain">
         </div>
 
         <div>
