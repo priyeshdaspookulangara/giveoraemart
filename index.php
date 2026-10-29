@@ -18,7 +18,7 @@ if (empty($repurchaseProducts)) {
     $repurchaseProducts = $repurchaseStmt->fetchAll();
 }
 
-$pageTitle = "Giveoraemart – Groceries, Bundles & Welfare Schemes";
+$pageTitle = "Giveoraemart – Groceries, Bundles, Recharges & Welfare Schemes";
 require_once __DIR__ . '/includes/header.php';
 ?>
 
@@ -26,29 +26,30 @@ require_once __DIR__ . '/includes/header.php';
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <h1>Quality groceries, combo packages and community welfare cover.</h1>
-      <p>Shop monthly pantry staples and household kits, earn referral rewards, and access health and education insurance through our welfare programs.</p>
+      <h1>Quality groceries, utility recharges and community welfare cover.</h1>
+      <p>Shop monthly pantry staples and household kits, pay mobile & electricity bills instantly, earn referral rewards, and access health & education insurance through our welfare schemes.</p>
       <div class="cta">
         <a class="btn" href="/shop.php">Explore marketplace</a>
+        <a class="btn ghost" href="/recharge.php">Pay bills & recharges</a>
         <a class="btn ghost" href="/welfare-schemes.php">View welfare schemes</a>
       </div>
     </div>
     <aside class="panel" aria-label="Featured offers">
       <h3>Pay instantly with UPI</h3>
-      <p>Scan the QR code with Google Pay, PhonePe or Paytm.</p>
+      <p>Scan QR code with GPay, PhonePe or Paytm & earn cashback points.</p>
       <div class="item">
         <div>
-          <strong>Daily pantry repurchase</strong>
-          <span>Grain, edible oils and spices</span>
+          <strong>Mobile & DTH Recharge</strong>
+          <span>Instant top-up for all operators</span>
         </div>
-        <b>$49.99</b>
+        <span class="badge" style="background:rgba(26,95,180,0.12);color:var(--blue)">5% Cashback</span>
       </div>
       <div class="item">
         <div>
           <strong>Vidya Vikas & Charity scheme</strong>
-          <span>Insurance and family support</span>
+          <span>Health, education & family cover</span>
         </div>
-        <span class="badge">Enrolled</span>
+        <span class="badge">Active Cover</span>
       </div>
     </aside>
   </div>
@@ -60,15 +61,68 @@ require_once __DIR__ . '/includes/header.php';
     <div class="fact"><b>10K+</b><span>Active members</span></div>
     <div class="fact"><b>₹60K</b><span>Charity support per user</span></div>
     <div class="fact"><b>₹10 Lakh</b><span>Maximum health cover</span></div>
+    <div class="fact"><b>100%</b><span>Instant bill confirmation</span></div>
   </div>
 </div>
+
+<!-- Recharges & Utility Services Showcase Section -->
+<section class="s" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Recharges & Utility Services</h2>
+        <p>Instant mobile top-ups, TV renewals, electricity bills, and toll payments right from your Giveoraemart account.</p>
+      </div>
+      <a class="btn ghost" style="color:var(--blue)" href="/recharge.php">Explore all services</a>
+    </div>
+
+    <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+      <div class="card" style="align-items:center;text-align:center">
+        <div class="ic" style="font-size:22px"><i class="fa-solid fa-mobile-screen-button"></i></div>
+        <h3>Mobile Recharge</h3>
+        <p style="font-size:13px">Prepaid & Postpaid plans for Jio, Airtel, Vi, BSNL</p>
+        <a href="/recharge.php?type=mobile">Recharge now &rarr;</a>
+      </div>
+      <div class="card" style="align-items:center;text-align:center">
+        <div class="ic" style="font-size:22px"><i class="fa-solid fa-tv"></i></div>
+        <h3>DTH Renewal</h3>
+        <p style="font-size:13px">Tata Play, Dish TV, Airtel Digital & Sun Direct</p>
+        <a href="/recharge.php?type=dth">Renew pack &rarr;</a>
+      </div>
+      <div class="card" style="align-items:center;text-align:center">
+        <div class="ic" style="font-size:22px"><i class="fa-solid fa-bolt"></i></div>
+        <h3>Electricity Bill</h3>
+        <p style="font-size:13px">Pay state electricity board bills online instantly</p>
+        <a href="/recharge.php?type=electricity">Pay bill &rarr;</a>
+      </div>
+      <div class="card" style="align-items:center;text-align:center">
+        <div class="ic" style="font-size:22px"><i class="fa-solid fa-wifi"></i></div>
+        <h3>Broadband & Landline</h3>
+        <p style="font-size:13px">Airtel Fiber, JioFiber, ACT & BSNL Internet</p>
+        <a href="/recharge.php?type=broadband">Pay broadband &rarr;</a>
+      </div>
+      <div class="card" style="align-items:center;text-align:center">
+        <div class="ic" style="font-size:22px"><i class="fa-solid fa-car"></i></div>
+        <h3>FASTag Recharge</h3>
+        <p style="font-size:13px">Top up NHAI, Paytm, ICICI, SBI & HDFC FASTag</p>
+        <a href="/recharge.php?type=fastag">Top up FASTag &rarr;</a>
+      </div>
+      <div class="card" style="align-items:center;text-align:center">
+        <div class="ic" style="font-size:22px"><i class="fa-solid fa-fire-flame-simple"></i></div>
+        <h3>Gas Refill</h3>
+        <p style="font-size:13px">Book Indane, HP & Bharat Gas refills online</p>
+        <a href="/recharge.php?type=gas">Book cylinder &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Featured Bundles Section -->
 <section class="s" style="padding-bottom:0">
   <div class="wrap">
     <div class="head">
       <div>
-        <h2>Featured bundles</h2>
+        <h2>Featured combo packages</h2>
         <p>Ready-made packs at a lower price than buying each item on its own.</p>
       </div>
       <a class="btn ghost" style="color:var(--blue)" href="/shop.php?type=package">See all bundles</a>
@@ -152,36 +206,36 @@ require_once __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<!-- Services Section -->
+<!-- Services & Ecosystem Section -->
 <section class="s">
   <div class="wrap">
     <div class="head">
       <div>
-        <h2>Services</h2>
-        <p>Groceries, bundles, UPI checkout and a referral wallet in one account.</p>
+        <h2>Platform Services & Member Ecosystem</h2>
+        <p>Groceries, bill payments, UPI checkout and a referral wallet integrated in one account.</p>
       </div>
     </div>
     <div class="cards">
       <div class="card">
-        <div class="ic">↻</div>
+        <div class="ic"><i class="fa-solid fa-cart-shopping"></i></div>
         <h3>Repurchase grocery</h3>
         <p>Monthly rice, oils and tea with home delivery and order tracking.</p>
         <a href="/shop.php?purchase_type=REPURCHASE">Shop repurchase</a>
       </div>
       <div class="card">
-        <div class="ic">▣</div>
-        <h3>Combo bundles</h3>
-        <p>Discounted family packages filled with everyday essentials.</p>
-        <a href="/shop.php?type=package">View packages</a>
+        <div class="ic"><i class="fa-solid fa-receipt"></i></div>
+        <h3>Utility & Bill Pay</h3>
+        <p>Instant mobile, DTH, electricity, broadband and FASTag payments.</p>
+        <a href="/recharge.php">Pay bills now</a>
       </div>
       <div class="card">
-        <div class="ic">◍</div>
+        <div class="ic"><i class="fa-solid fa-qrcode"></i></div>
         <h3>Instant UPI payment</h3>
         <p>Checkout by QR code and confirm with your UTR number.</p>
         <a href="/checkout.php">Checkout details</a>
       </div>
       <div class="card">
-        <div class="ic">△</div>
+        <div class="ic"><i class="fa-solid fa-sitemap"></i></div>
         <h3>Matrix referral wallet</h3>
         <p>Auto-spillover across 11 levels with direct income and reserve tracking.</p>
         <a href="/account.php">Open my wallet</a>
@@ -190,13 +244,13 @@ require_once __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<!-- Welfare Schemes Section -->
+<!-- Welfare Schemes Showcase Section -->
 <section class="s welfare">
   <div class="wrap">
     <div class="head">
       <div>
-        <h2>Welfare schemes</h2>
-        <p>Financial support, health insurance and education cover for members and their families.</p>
+        <h2>Welfare schemes & Community support</h2>
+        <p>Financial support, health insurance and education cover for active members and their families.</p>
       </div>
       <a class="btn" style="background:#fff;color:var(--navy);border-color:#fff" href="/welfare-schemes.php">All scheme details</a>
     </div>
@@ -206,19 +260,19 @@ require_once __DIR__ . '/includes/header.php';
         <h3>Charity Support Scheme</h3>
         <p>Ongoing financial relief and medical protection for member families.</p>
         <ul>
-          <li><strong>₹3,000 × 60 cycles</strong> monthly support payout</li>
-          <li>Health insurance for EMIs of ₹50,000 and above</li>
-          <li><strong>₹10 Lakh</strong> cover for women, <strong>₹5 Lakh</strong> for men</li>
+          <li><strong>₹3,000 × 60 cycles</strong> guaranteed monthly support payout</li>
+          <li>EMI assistance for hospital and medical loans over ₹50,000</li>
+          <li><strong>₹10 Lakh</strong> cover for female members, <strong>₹5 Lakh</strong> for males</li>
         </ul>
       </article>
       <article class="scheme">
-        <span class="tag">Support tier from ₹10,000</span>
+        <span class="tag">Youth & Student Protection</span>
         <h3>Vidya Vikas Scheme</h3>
         <p>Education assistance, student medical cover and accident protection for parents.</p>
         <ul>
-          <li><strong>₹2 Lakh</strong> health insurance for active students</li>
+          <li><strong>₹2 Lakh</strong> health insurance for active enrolled students</li>
           <li><strong>₹50,000</strong> accidental death cover for students</li>
-          <li><strong>₹4 Lakh</strong> accidental death cover for parents</li>
+          <li><strong>₹4 Lakh</strong> accidental death cover for parent policyholder</li>
         </ul>
       </article>
     </div>
