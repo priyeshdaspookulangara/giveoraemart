@@ -24,7 +24,7 @@ require_once __DIR__ . '/includes/header.php';
         <p class="text-slate-400 text-sm mt-1">Complete your order as guest or logged in user.</p>
     </div>
 
-    <form action="/api/checkout.php" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <form action="api/checkout.php" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
         <!-- Contact & Delivery Details (Left 2 cols) -->
         <div class="lg:col-span-2 space-y-6">
@@ -72,18 +72,30 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
             </div>
 
-            <!-- Payment Option Preview -->
+            <!-- Payment Selection -->
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
                 <h2 class="text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-4">
                     <i class="fa-solid fa-credit-card text-emerald-400"></i> Payment Selection
                 </h2>
 
-                <div class="bg-slate-950 p-4 rounded-xl border border-emerald-500/30 flex items-center gap-4">
-                    <input type="radio" checked class="w-4 h-4 text-emerald-500">
-                    <div>
-                        <span class="font-bold text-sm text-white block">Cash On Delivery / Card At Doorstep</span>
-                        <span class="text-xs text-slate-400">Pay safely upon delivery fulfillment.</span>
-                    </div>
+                <div class="space-y-3">
+                    <label class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center gap-4 cursor-pointer hover:border-emerald-500/50 transition block">
+                        <input type="radio" name="payment_method" value="COD" checked class="w-4 h-4 text-emerald-500 accent-emerald-500">
+                        <div>
+                            <span class="font-bold text-sm text-white block">Cash On Delivery / Card At Doorstep</span>
+                            <span class="text-xs text-slate-400">Pay safely upon delivery fulfillment.</span>
+                        </div>
+                    </label>
+
+                    <label class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center gap-4 cursor-pointer hover:border-emerald-500/50 transition block">
+                        <input type="radio" name="payment_method" value="UPI" class="w-4 h-4 text-emerald-500 accent-emerald-500">
+                        <div>
+                            <span class="font-bold text-sm text-white block flex items-center gap-2">
+                                Instant UPI Payment <span class="bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-0.5 rounded font-extrabold uppercase">Fast</span>
+                            </span>
+                            <span class="text-xs text-slate-400">Pay using GPay, PhonePe, Paytm or any UPI App & verify instantly.</span>
+                        </div>
+                    </label>
                 </div>
             </div>
 

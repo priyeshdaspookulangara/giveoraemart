@@ -15,9 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $guestEmail = sanitize($_POST['guest_email'] ?? '');
     $guestPhone = sanitize($_POST['guest_phone'] ?? '');
     $shippingAddress = sanitize($_POST['shipping_address'] ?? '');
+    $paymentMethod = sanitize($_POST['payment_method'] ?? 'COD');
 
     if (empty($guestName) || empty($guestEmail) || empty($shippingAddress)) {
         die("Please fill in all required fields.");
+    }
+
+    if (!in_array($paymentMethod, ['COD', 'UPI'])) {
+        $paymentMethod = 'COD';
     }
 
     $currentUser = get_logged_in_user();
@@ -31,14 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Insert Order Record
-        $orderStmt = $pdo->prepare("INSERT INTO orders (user_id, guest_name, guest_email, guest_phone, shipping_address, total_amount, status) VALUES (?, ?, ?, ?, ?, ?, 'PENDING')");
+        $orderStmt = $pdo->prepare("INSERT INTO orders (user_id, guest_name, guest_email, guest_phone, shipping_address, total_amount, payment_method, status) VALUES (?, ?, ?, ?, ?, ?, ?, 'PENDING')");
         $orderStmt->execute([
             $userId,
             $guestName,
             $guestEmail,
             $guestPhone,
             $shippingAddress,
-            $grandTotal
+            $grandTotal,
+            $paymentMethod
         ]);
 
         $orderId = $pdo->lastInsertId();
@@ -67,13 +73,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Clear session cart
         $_SESSION['cart'] = [];
 
+        // If payment method is UPI, store pending checkout order info and redirect to payment page
+        if ($paymentMethod === 'UPI') {
+            $_SESSION['pending_order_id'] = $orderId;
+            $_SESSION['checkout_guest_info'] = [
+                'name' => $guestName,
+                'email' => $guestEmail,
+                'phone' => $guestPhone
+            ];
+            header("Location: ../payment.php?order_id=" . $orderId);
+            exit;
+        }
+
         // If registered user, trigger matrix & level referral payouts for order
         if ($userId) {
             distribute_level_commissions($userId, $orderId);
             distribute_matrix_commissions($userId, $orderId);
         }
 
-        header("Location: /order-success.php?id=" . $orderId);
+        header("Location: ../order-success.php?id=" . $orderId);
         exit;
 
     } catch (Exception $e) {
