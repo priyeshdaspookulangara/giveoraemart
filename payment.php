@@ -86,12 +86,12 @@ require_once __DIR__ . '/includes/header.php';
     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 text-center mb-6 space-y-4">
         <div class="inline-block p-3 bg-white rounded-2xl shadow-xl">
             <!-- Simulated UPI QR Code image -->
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=giveorae@upi%26pn=Giveoraemart%26am=<?= $amount ?>" alt="UPI QR Code" class="w-44 h-44 mx-auto rounded-lg">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=8078550130@sbi%26pn=Giveoraemart%26am=<?= $amount ?>" alt="UPI QR Code" class="w-44 h-44 mx-auto rounded-lg">
         </div>
 
         <div>
             <div class="text-[11px] uppercase tracking-wider text-slate-500 font-bold">UPI ID / VPA</div>
-            <div class="text-emerald-400 font-mono font-bold text-sm select-all">giveorae@upi</div>
+            <div class="text-emerald-400 font-mono font-bold text-sm select-all">8078550130@sbi</div>
         </div>
 
         <div class="text-slate-400 text-xs flex justify-center items-center gap-3 pt-2 border-t border-slate-900">
